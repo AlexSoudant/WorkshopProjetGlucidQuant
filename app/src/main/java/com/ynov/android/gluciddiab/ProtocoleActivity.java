@@ -1,7 +1,7 @@
 package com.ynov.android.gluciddiab;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -9,7 +9,7 @@ import android.widget.TextView;
  * Created by admin on 30/03/17.
  */
 
-public class ProtocoleActivity {
+public class ProtocoleActivity extends AppCompatActivity{
 
     EditText matinGlucideLent;
     EditText matinGlucideRapide;
