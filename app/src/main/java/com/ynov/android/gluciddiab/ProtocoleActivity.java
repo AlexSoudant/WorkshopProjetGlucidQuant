@@ -39,6 +39,8 @@ public class ProtocoleActivity extends AppCompatActivity{
 
         matinGlucideLent = (EditText) findViewById(R.id.editTextMatinLent);
 
+        matinGlucideRapide = (EditText) findViewById(R.id.editTextMatinRapide);
+
         btnProtocoleValidate = (Button) findViewById(R.id.buttonValidate);
 
         //btnProtocoleValidate.setEnabled(false);
@@ -50,7 +52,7 @@ public class ProtocoleActivity extends AppCompatActivity{
                         Toast msgLoadNextPage = Toast.makeText(getBaseContext(),"chargement next page",Toast.LENGTH_LONG);
                         Toast msgEmptyField = Toast.makeText(getBaseContext(),"Champs vide!",Toast.LENGTH_LONG);
 
-                        if (!matinGlucideLent.getText().toString().equals(""))
+                        if (!matinGlucideLent.getText().toString().equals("") && !matinGlucideRapide.getText().toString().equals(""))
                             msgLoadNextPage.show();
                         else msgEmptyField.show();
 
