@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ProtocoleActivity" android:configChanges="orientation|screenSize"></activity>
+        <activity android:name=".RestoActivity" android:configChanges="orientation|screenSize"></activity>
     </application>
 
 </manifest>

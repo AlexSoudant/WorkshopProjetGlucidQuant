@@ -2,6 +2,7 @@ package com.ynov.android.gluciddiab;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     Button btnProtocoleTransition;
+    private SQLiteDatabase mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnProtocoleTransition = (Button) findViewById(R.id.buttonProtocoleTransition);
+
         btnProtocoleTransition.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 //String str = eText.getText().toString();
