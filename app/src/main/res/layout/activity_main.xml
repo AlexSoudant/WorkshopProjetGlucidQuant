@@ -11,17 +11,18 @@
     tools:context="com.ynov.android.gluciddiab.MainActivity">
 
     <TextView
+        android:id="@+id/textPresentation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Bienvenue sur GluDiab!" />
 
     <Button
         android:id="@+id/buttonProtocoleTransition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/textPresentation"
+        android:layout_below="@+id/textPresentation"
         android:layout_marginTop="130dp"
-        android:text="@string/show_the_text" />
+        android:text="Protocole" />
 
 </RelativeLayout>

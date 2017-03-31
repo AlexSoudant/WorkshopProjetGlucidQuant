@@ -3,20 +3,58 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/textViewProtocoleTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="14dp"
         android:text="Votre Protocole de Glucides:" />
 
+    <TextView
+        android:id="@+id/textGlucides"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textViewTitle"
+        android:text="Glucides Lents:         Glucides Rapides:" />
+
 
     <EditText
         android:id="@+id/editTextMatinLent"
-        android:layout_width="fill_parent"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewTitle"
-        android:layout_marginTop="61dp"
+        android:layout_below="@+id/textGlucides"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="70dp"
         android:ems="10"
-        android:text="valeur glucide lent" android:inputType="text" />
+        android:hint="Matin glu lent" android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editTextMatinRapide"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textGlucides"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="200dp"
+        android:ems="10"
+        android:text="" android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textMatin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Matin"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/editTextMatinLent" />
+
+    <Button
+        android:id="@+id/buttonValidate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextMatinLent"
+        android:layout_below="@+id/editTextMatinLent"
+        android:layout_marginTop="130dp"
+        android:text="Validation" />
 
 </RelativeLayout>
