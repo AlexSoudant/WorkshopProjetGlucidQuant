@@ -1,5 +1,7 @@
 package com.ynov.android.gluciddiab;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -7,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ynov.android.gluciddiab.dataUtils.ProtocoleGlucidesContract;
 import com.ynov.android.gluciddiab.dataUtils.ProtocoleGlucidesDbHelper;
@@ -47,10 +48,15 @@ public class RestoActivity extends AppCompatActivity{
 
         btnTestDb.setOnClickListener(new View.OnClickListener()
         {
+            Context context = RestoActivity.this;
+
+            Class destinationActivity = MenuActivity.class;
+
+            Intent startmenuActivityIntent = new Intent(context, destinationActivity);
+
             public void onClick(View view)
             {
-                Toast msgtestdb = Toast.makeText(getBaseContext(),GluLent,Toast.LENGTH_LONG);
-                msgtestdb.show();
+                startActivity(startmenuActivityIntent);
 
             }
         });

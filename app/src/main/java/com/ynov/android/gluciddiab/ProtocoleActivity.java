@@ -80,6 +80,8 @@ public class ProtocoleActivity extends AppCompatActivity{
 
                             //mDb.execSQL(query);
 
+                            mDb.delete(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.TABLE_NAME,"1",null);
+
                             ContentValues values = new ContentValues();
 
                             values.put(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_LENT, QueryMatinGluLent);
@@ -96,6 +98,8 @@ public class ProtocoleActivity extends AppCompatActivity{
                             msgEmptyDb.show();
 
                             cursor.close();
+
+                            //mDb.close();
 
                             startActivity(startrestoActivityIntent);
 
