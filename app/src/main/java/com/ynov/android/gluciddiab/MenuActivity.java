@@ -15,6 +15,22 @@ import com.ynov.android.gluciddiab.restoUtils.ImageAdapter;
 
 public class MenuActivity extends AppCompatActivity {
 
+    private String[] fakedata = {
+            "Coca Cola",
+            "Deluxe Potatoes",
+            "280 Original",
+            "Cheese Burger",
+            "Evian",
+            "Petite Frites",
+            "Truc au Poulet",
+            "Ketchup",
+            "Muffin myrtille",
+            "280 Emmental",
+            "Petit Hotdog",
+            "Sundae",
+            "Triple cheese"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +42,12 @@ public class MenuActivity extends AppCompatActivity {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(MenuActivity.this, "" + position,
+                Toast.makeText(MenuActivity.this, "" + fakedata[position],
                         Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
 
     }
