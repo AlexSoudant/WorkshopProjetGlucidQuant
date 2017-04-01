@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ynov.android.gluciddiab.restoUtils.ImageAdapter;
 
@@ -69,8 +68,8 @@ public class MenuActivity extends AppCompatActivity {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(MenuActivity.this, "" + fakedata[position],
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MenuActivity.this, "" + fakedata[position],
+                //        Toast.LENGTH_SHORT).show();
                 tvPanier.append("\n" + "1x" + fakedata[position]);
             }
         });
