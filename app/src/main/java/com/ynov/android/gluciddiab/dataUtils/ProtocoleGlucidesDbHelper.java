@@ -24,8 +24,8 @@ public class ProtocoleGlucidesDbHelper extends SQLiteOpenHelper {
             final String SQL_CREATE_STAFFLIST_TABLE = "CREATE TABLE " +
                     ProtocoleGlucidesContract.ProtocoleGlucidesEntry.TABLE_NAME + " (" +
                     ProtocoleGlucidesContract.ProtocoleGlucidesEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_LENT + " INTEGER, " +
-                    ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_RAPIDE + " INTEGER, " +
+                    ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_LENT + " STRING, " +
+                    ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_RAPIDE + " STRING, " +
                     ProtocoleGlucidesContract.ProtocoleGlucidesEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP " +
                     ");";
 

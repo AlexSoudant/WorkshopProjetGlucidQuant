@@ -1,7 +1,9 @@
 package com.ynov.android.gluciddiab;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ynov.android.gluciddiab.dataUtils.ProtocoleGlucidesContract;
 import com.ynov.android.gluciddiab.dataUtils.ProtocoleGlucidesDbHelper;
 
 /**
@@ -40,7 +43,7 @@ public class ProtocoleActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_protocole);
 
-        ProtocoleGlucidesDbHelper dbHelper = new ProtocoleGlucidesDbHelper(this);
+        final ProtocoleGlucidesDbHelper dbHelper = new ProtocoleGlucidesDbHelper(this);
         mDb = dbHelper.getWritableDatabase();
 
         protocoleTitle = (TextView) findViewById(R.id.textViewProtocoleTitle);
@@ -69,26 +72,55 @@ public class ProtocoleActivity extends AppCompatActivity{
                         Intent startrestoActivityIntent = new Intent(context, destinationActivity);
 
                         if (!matinGlucideLent.getText().toString().equals("") && !matinGlucideRapide.getText().toString().equals("")) {
-                            startActivity(startrestoActivityIntent);
 
                             String QueryMatinGluLent = matinGlucideLent.getText().toString();
                             String QueryMatinGluRapide = matinGlucideRapide.getText().toString();
 
-                            String query = "INSERT INTO protocoleglucidesdata (glulent,glurapide) VALUES('" + QueryMatinGluLent + "', '" + QueryMatinGluRapide + "');";
+                            //String query = "INSERT INTO protocoleglucidesdata (glulent,glurapide) VALUES('" + QueryMatinGluLent + "', '" + QueryMatinGluRapide + "');";
 
-                            mDb.execSQL(query);
+                            //mDb.execSQL(query);
+
+                            ContentValues values = new ContentValues();
+
+                            values.put(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_LENT, QueryMatinGluLent);
+                            values.put(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_RAPIDE, QueryMatinGluRapide);
+
+                            mDb.insert(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.TABLE_NAME, null, values);
+
+                            Cursor cursor = getGlulent();
+
+                            cursor.moveToFirst();
+                            String GluLent = cursor.getString(cursor.getColumnIndex(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_LENT));
+
+                            Toast msgEmptyDb = Toast.makeText(getBaseContext(),GluLent,Toast.LENGTH_LONG);
+                            msgEmptyDb.show();
+
+                            cursor.close();
+
+                            startActivity(startrestoActivityIntent);
+
+
                         }
                         else msgEmptyField.show();
-                        
+
 
 
                     }
                 });
 
+    }
 
-
-
-
+    private Cursor getGlulent() {
+        // COMPLETED (6) Inside, call query on mDb passing in the table name and projection String [] order by COLUMN_TIMESTAMP
+        return mDb.query(
+                ProtocoleGlucidesContract.ProtocoleGlucidesEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                ProtocoleGlucidesContract.ProtocoleGlucidesEntry.COLUMN_TIMESTAMP
+        );
     }
 
 
