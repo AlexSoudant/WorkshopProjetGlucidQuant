@@ -2,59 +2,173 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+
     <TextView
         android:id="@+id/textViewProtocoleTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="14dp"
-        android:text="Votre Protocole de Glucides:" />
-
-    <TextView
-        android:id="@+id/textGlucides"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/textViewTitle"
-        android:text="Glucides Lents:         Glucides Rapides:" />
-
-
-    <EditText
-        android:id="@+id/editTextMatinLent"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textGlucides"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="70dp"
-        android:ems="10"
-        android:hint="Matin glu lent" android:inputType="number" />
+        android:layout_centerHorizontal="true"
+        android:text="Définissez votre protocole"
+        android:textSize="24dp" />
 
-    <EditText
-        android:id="@+id/editTextMatinRapide"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textGlucides"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textViewProtocoleTitle"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="200dp"
-        android:ems="10"
-        android:text="" android:inputType="number" />
+        android:layout_centerInParent="true">
 
-    <TextView
-        android:id="@+id/textMatin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Matin"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_alignTop="@+id/editTextMatinLent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonValidate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editTextMatinLent"
-        android:layout_below="@+id/editTextMatinLent"
-        android:layout_marginTop="130dp"
-        android:text="Validation" />
+            //Matin
+            <TextView
+                android:id="@+id/textViewMatin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewTitle"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="14dp"
+                android:text="Matin"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/editTextMatinLent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewMatin"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="glucide lent"
+                android:inputType="number" />
+
+
+
+            <EditText
+                android:id="@+id/editTextMatinRapide"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextMatinLent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="glucide rapide"
+                android:inputType="number" />
+
+            //Midi
+            <TextView
+                android:id="@+id/textViewMidi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextMatinRapide"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="14dp"
+                android:text="Midi"
+                android:textSize="19dp"/>
+
+            <EditText
+                android:id="@+id/editTextMidiLent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewMidi"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="glucide lent"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/editTextMidiRapide"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextMidiLent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="glucide rapide"
+                android:inputType="number" />
+
+            //Apres midi
+            <TextView
+                android:id="@+id/textViewApresMidi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextMidiRapide"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="14dp"
+                android:text="Après Midi"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/editTextAPLent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewApresMidi"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="glucide lent"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/editTextAPRapide"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextAPLent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="glucide rapide"
+                android:inputType="number" />
+
+            //Soir
+            <TextView
+                android:id="@+id/textViewSoir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextAPRapide"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="14dp"
+                android:text="Soir"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/editTextSoirLent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewSoir"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="glucide lent"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/editTextSoirRapide"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextSoirLent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="glucide rapide"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/buttonValidate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="Validation" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

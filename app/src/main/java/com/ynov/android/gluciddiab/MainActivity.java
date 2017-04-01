@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent startRestoActivity = new Intent(context, noProtocoleActivity);
 
-
                 if (firstboot){
                     // 1) Launch the authentication activity
 

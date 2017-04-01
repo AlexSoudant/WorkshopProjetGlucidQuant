@@ -32,7 +32,6 @@ public class ProtocoleActivity extends AppCompatActivity{
     EditText soirGlucideRapide;
 
     TextView protocoleTitle;
-    TextView glucideText;
 
     Button btnProtocoleValidate;
 
@@ -48,11 +47,18 @@ public class ProtocoleActivity extends AppCompatActivity{
 
         protocoleTitle = (TextView) findViewById(R.id.textViewProtocoleTitle);
 
-        glucideText = (TextView) findViewById(R.id.textGlucides);
 
         matinGlucideLent = (EditText) findViewById(R.id.editTextMatinLent);
-
         matinGlucideRapide = (EditText) findViewById(R.id.editTextMatinRapide);
+
+        midiGlucideLent = (EditText) findViewById(R.id.editTextMidiLent);
+        midiGlucideRapide = (EditText) findViewById(R.id.editTextMidiRapide);
+
+        gouterGlucideLent = (EditText) findViewById(R.id.editTextAPLent);
+        gouterGlucideRapide = (EditText) findViewById(R.id.editTextAPRapide);
+
+        soirGlucideLent = (EditText) findViewById(R.id.editTextSoirLent);
+        soirGlucideRapide = (EditText) findViewById(R.id.editTextSoirRapide);
 
         btnProtocoleValidate = (Button) findViewById(R.id.buttonValidate);
 
@@ -71,7 +77,7 @@ public class ProtocoleActivity extends AppCompatActivity{
 
                         Intent startrestoActivityIntent = new Intent(context, destinationActivity);
 
-                        if (!matinGlucideLent.getText().toString().equals("") && !matinGlucideRapide.getText().toString().equals("")) {
+                        if (!matinGlucideLent.getText().toString().equals("") && !matinGlucideRapide.getText().toString().equals("") && !midiGlucideRapide.getText().toString().equals("") && !midiGlucideLent.getText().toString().equals("") && !gouterGlucideRapide.getText().toString().equals("") && !gouterGlucideLent.getText().toString().equals("") && !soirGlucideRapide.getText().toString().equals("") && !soirGlucideLent.getText().toString().equals("")){
 
                             String QueryMatinGluLent = matinGlucideLent.getText().toString();
                             String QueryMatinGluRapide = matinGlucideRapide.getText().toString();

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/menu_layout">
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/gridviewItems"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:columnWidth="90dp"
         android:numColumns="auto_fit"
         android:verticalSpacing="10dp"
@@ -14,6 +15,36 @@
         android:stretchMode="columnWidth"
         android:gravity="center"
         />
+
+    <TextView
+        android:id="@+id/textPanier"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_below="@+id/gridviewItems"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="25dp"
+        android:text="Votre Panier est ici:"/>
+
+    <Button
+        android:id="@+id/buttonValidPanier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textPanier"
+        android:text="Valider votre Menu!" />
+
+
+<!--    <Button
+        android:id="@+id/buttonPopUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PopUp test" />-->
+
 
 
 </RelativeLayout>
