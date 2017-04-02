@@ -1,5 +1,6 @@
 package com.ynov.android.gluciddiab;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -65,6 +67,7 @@ public class MenuActivity extends AppCompatActivity {
     String mealTime;
     String restoChoice;
 
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +96,7 @@ public class MenuActivity extends AppCompatActivity {
         //});
 
         dropdown = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, liste);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, liste);
         dropdown.setAdapter(adapter);
 
         // GridView
@@ -106,17 +109,55 @@ public class MenuActivity extends AppCompatActivity {
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
+                                    final int position, long id) {
                 Toast.makeText(MenuActivity.this, mealTime + " " + restoChoice,
                         Toast.LENGTH_SHORT).show();
                 //tvPanier.append("\n" + "1x" + fakedata[position]);
 
-                ArrayPanier.add("1x " + fakedata[position]);
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_menu);
+                dialog.setTitle("Voulez vous ce produit?");
 
-                //menuListAdapter adapter = new menuListAdapter(MenuActivity.this, ArrayPanier);
+                TextView text = (TextView) dialog.findViewById(R.id.DialogItem);
+                text.setText(fakedata[position]);
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MenuActivity.this,android.R.layout.simple_list_item_1,ArrayPanier);
-                lvPanier.setAdapter(adapter);
+                TextView tvGluLent = (TextView) dialog.findViewById(R.id.DialogGluLent);
+                tvGluLent.setText("Glu Lent: 4");
+
+                TextView tvGluRapide = (TextView) dialog.findViewById(R.id.DialogGluRapide);
+                tvGluRapide.setText("Glu Rapide: 5");
+
+                ImageView image = (ImageView) dialog.findViewById(R.id.DialogImage);
+                image.setImageResource(R.drawable.doublecheese);
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                // if button is clicked, close the custom dialog
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        ArrayPanier.add("1x " + fakedata[position]);
+
+                        //menuListAdapter adapter = new menuListAdapter(MenuActivity.this, ArrayPanier);
+
+                        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MenuActivity.this,android.R.layout.simple_list_item_1,ArrayPanier);
+
+                        lvPanier.setAdapter(adapter);
+                        dialog.dismiss();
+                    }
+                });
+
+                Button dialogButtonNo = (Button) dialog.findViewById(R.id.dialogButtonNon);
+                // if button is clicked, close the custom dialog
+                dialogButtonNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
 
 
             }
