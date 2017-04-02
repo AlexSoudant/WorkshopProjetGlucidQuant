@@ -12,6 +12,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ynov.android.gluciddiab.restoUtils.ImageAdapter;
 
@@ -60,10 +61,22 @@ public class MenuActivity extends AppCompatActivity {
     //PopupWindow pw;
     //Button fabButton;
 
+    // récup depuis restoActivity
+    String mealTime;
+    String restoChoice;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        Intent intentThatStartedThisActivity = getIntent();
+
+        Bundle extras = intentThatStartedThisActivity.getExtras();
+        mealTime = extras.getString("EXTRA_MEAL");
+        restoChoice = extras.getString("EXTRA_RESTO");
+
 
         tvPanier = (TextView) findViewById(R.id.textPanier);
         btnValid = (Button) findViewById(R.id.buttonValidPanier);
@@ -90,11 +103,12 @@ public class MenuActivity extends AppCompatActivity {
 
         final ArrayList<String> ArrayPanier = new ArrayList<String>();
 
+
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                //Toast.makeText(MenuActivity.this, "" + fakedata[position],
-                //        Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuActivity.this, mealTime + " " + restoChoice,
+                        Toast.LENGTH_SHORT).show();
                 //tvPanier.append("\n" + "1x" + fakedata[position]);
 
                 ArrayPanier.add("1x " + fakedata[position]);
@@ -103,6 +117,7 @@ public class MenuActivity extends AppCompatActivity {
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(MenuActivity.this,android.R.layout.simple_list_item_1,ArrayPanier);
                 lvPanier.setAdapter(adapter);
+
 
             }
         });
@@ -116,6 +131,12 @@ public class MenuActivity extends AppCompatActivity {
                 Class destinationActivity = PanierActivity.class;
 
                 Intent startPanierActivityIntent = new Intent(context, destinationActivity);
+
+                Bundle extras = new Bundle();
+
+                extras.putString("EXTRA_MEAL",mealTime);
+                extras.putStringArrayList("EXTRA_MENU",ArrayPanier);
+                startPanierActivityIntent.putExtras(extras);
 
                 startActivity(startPanierActivityIntent);
 

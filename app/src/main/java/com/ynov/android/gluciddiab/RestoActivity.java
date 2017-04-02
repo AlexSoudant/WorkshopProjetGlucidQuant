@@ -36,6 +36,9 @@ public class RestoActivity extends AppCompatActivity{
     private SQLiteDatabase mDb;
     private Toolbar toolbar;
 
+    String MealTime;
+    String RestoChoice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,8 @@ public class RestoActivity extends AppCompatActivity{
 
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+
+        MealTime = "";
 
         //btnTestDb = (Button) findViewById(R.id.buttonTestDb);
 
@@ -55,12 +60,22 @@ public class RestoActivity extends AppCompatActivity{
 
             Class destinationActivity = MenuActivity.class;
 
+
+
             Intent startmenuActivityIntent = new Intent(context, destinationActivity);
 
             public void onClick(View view)
             {
-                startActivity(startmenuActivityIntent);
+                //String MealTime = "matin";
+                if (!MealTime.equals("")) {
 
+                    RestoChoice = "McDo";
+                    Bundle extras = new Bundle();
+                    extras.putString("EXTRA_RESTO",RestoChoice);
+                    extras.putString("EXTRA_MEAL",MealTime);
+                    startmenuActivityIntent.putExtras(extras);
+                    startActivity(startmenuActivityIntent);
+                }else{Toast.makeText(RestoActivity.this, "Choisis d'abord ton repas", Toast.LENGTH_SHORT).show();}
             }
         });
 
@@ -74,7 +89,16 @@ public class RestoActivity extends AppCompatActivity{
 
             public void onClick(View view)
             {
-                startActivity(startmenuActivityIntent);
+
+                if (!MealTime.equals("")) {
+                    RestoChoice = "KFC";
+                    Bundle extras = new Bundle();
+                    extras.putString("EXTRA_RESTO",RestoChoice);
+                    extras.putString("EXTRA_MEAL",MealTime);
+                    startmenuActivityIntent.putExtras(extras);
+
+                    startActivity(startmenuActivityIntent);
+                }else{Toast.makeText(RestoActivity.this, "Choisis d'abord ton repas", Toast.LENGTH_SHORT).show();}
 
             }
         });
@@ -106,7 +130,10 @@ public class RestoActivity extends AppCompatActivity{
                 lunch.setPressed(false);
                 snack.setPressed(false);
                 meal.setPressed(false);
+                MealTime = "matin";
                 return true;
+
+
             }
         });
 
@@ -117,6 +144,7 @@ public class RestoActivity extends AppCompatActivity{
                 lunch.setPressed(true);
                 snack.setPressed(false);
                 meal.setPressed(false);
+                MealTime = "midi";
                 return true;
             }
         });
@@ -128,6 +156,7 @@ public class RestoActivity extends AppCompatActivity{
                 lunch.setPressed(false);
                 snack.setPressed(true);
                 meal.setPressed(false);
+                MealTime = "gouter";
                 return true;
             }
         });
@@ -139,6 +168,7 @@ public class RestoActivity extends AppCompatActivity{
                 lunch.setPressed(false);
                 snack.setPressed(false);
                 meal.setPressed(true);
+                MealTime = "soir";
                 return true;
             }
         });

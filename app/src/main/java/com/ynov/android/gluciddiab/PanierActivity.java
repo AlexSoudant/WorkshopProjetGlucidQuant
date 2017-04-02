@@ -4,6 +4,7 @@ package com.ynov.android.gluciddiab;
  * Created by admin on 02/04/17.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ynov.android.gluciddiab.panierUtils.CustomListView;
+
+import java.util.ArrayList;
 
 /**
  * Created by romain on 31/03/2017.
@@ -29,6 +32,7 @@ public class PanierActivity extends AppCompatActivity {
     private TextView textMaxTGR;
     private TextView textMaxTGL;
     private RadioButton mRadio;
+
     String[] prenoms = new String[]{
             "Big Mac Maxi", "frite Maxi", "coca-cola", "sunday"
     };
@@ -39,10 +43,19 @@ public class PanierActivity extends AppCompatActivity {
             6,7,5,6
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.panier);
+
+        Intent intentThatStartedThisActivity = getIntent();
+
+        Bundle extras = intentThatStartedThisActivity.getExtras();
+        final String mealTime = extras.getString("EXTRA_MEAL");
+        final ArrayList<String> menuChoice = extras.getStringArrayList("EXTRA_MENU");
+
+
         mProgressBar1 = (ProgressBar) findViewById(R.id.pGL);
         mProgressBar1.setMax(15);
         mProgressBar2 = (ProgressBar) findViewById(R.id.pGR);
@@ -71,7 +84,7 @@ public class PanierActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(PanierActivity.this, "You Clicked at " +prenoms[+ position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(PanierActivity.this, "Menu: " + menuChoice + "Repas: " + mealTime , Toast.LENGTH_SHORT).show();
 
             }
         });

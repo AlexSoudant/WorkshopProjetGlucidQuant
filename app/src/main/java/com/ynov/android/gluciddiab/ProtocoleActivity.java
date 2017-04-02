@@ -82,6 +82,15 @@ public class ProtocoleActivity extends AppCompatActivity{
                             String QueryMatinGluLent = matinGlucideLent.getText().toString();
                             String QueryMatinGluRapide = matinGlucideRapide.getText().toString();
 
+                            String QueryMidiGluLent = midiGlucideLent.getText().toString();
+                            String QueryMidiGluRapide = midiGlucideRapide.getText().toString();
+
+                            String QueryGouterGluLent = gouterGlucideLent.getText().toString();
+                            String QueryGouterGluRapide = gouterGlucideRapide.getText().toString();
+
+                            String QuerySoirGluLent = soirGlucideLent.getText().toString();
+                            String QuerySoirGluRapide = soirGlucideRapide.getText().toString();
+
                             //String query = "INSERT INTO protocoleglucidesdata (glulent,glurapide) VALUES('" + QueryMatinGluLent + "', '" + QueryMatinGluRapide + "');";
 
                             //mDb.execSQL(query);
@@ -95,17 +104,28 @@ public class ProtocoleActivity extends AppCompatActivity{
 
                             mDb.insert(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.TABLE_NAME, null, values);
 
-                            Cursor cursor = getGlulent();
+                            values = new ContentValues();
 
-                            cursor.moveToFirst();
-                            String GluLent = cursor.getString(cursor.getColumnIndex(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_LENT));
+                            values.put(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_LENT, QueryMidiGluLent);
+                            values.put(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_RAPIDE, QueryMidiGluRapide);
 
-                            Toast msgEmptyDb = Toast.makeText(getBaseContext(),GluLent,Toast.LENGTH_LONG);
-                            msgEmptyDb.show();
+                            mDb.insert(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.TABLE_NAME, null, values);
 
-                            cursor.close();
+                            values = new ContentValues();
 
-                            //mDb.close();
+                            values.put(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_LENT, QueryGouterGluLent);
+                            values.put(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_RAPIDE, QueryGouterGluRapide);
+
+                            mDb.insert(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.TABLE_NAME, null, values);
+
+                            values = new ContentValues();
+
+                            values.put(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_LENT, QuerySoirGluLent);
+                            values.put(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_RAPIDE, QuerySoirGluRapide);
+
+                            mDb.insert(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.TABLE_NAME, null, values);
+
+
 
                             startActivity(startrestoActivityIntent);
 
