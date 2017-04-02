@@ -19,23 +19,33 @@
     <TextView
         android:id="@+id/textPanier"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="30dp"
         android:layout_below="@+id/gridviewItems"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:textSize="25dp"
         android:text="Votre Panier est ici:"/>
 
+    <ListView
+        android:id="@+id/listViewPanier"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_above="@+id/buttonValidPanier"
+        android:layout_below="@+id/textPanier"
+        android:layout_width="wrap_content" />
+
     <Button
         android:id="@+id/buttonValidPanier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/textPanier"
         android:text="Valider votre Menu!" />
 
 

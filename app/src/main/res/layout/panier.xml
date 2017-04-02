@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/listView"
+        android:background="#CDCDCD"
+        android:layout_marginBottom="0sp">
+        <TextView
+            android:id="@+id/textTGL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#36007F"
+            android:layout_marginTop="10dp"
+            android:text="Total de glucide lente:0g" />
+        <TextView
+            android:id="@+id/textMaxTGL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:textColor="#36007F"
+            android:text="max 15g" />
+        <ProgressBar
+            android:id="@+id/pGL"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_below="@+id/textTGL"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textTGR"
+            android:layout_below="@+id/pGL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#36007F"
+            android:text="Total de glucide rapide:0g" />
+        <TextView
+            android:id="@+id/textMaxTGR"
+            android:layout_below="@+id/pGL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:textColor="#36007F"
+            android:text="max 10g" />
+        <ProgressBar
+            android:id="@+id/pGR"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_below="@+id/textTGR"
+            android:layout_height="wrap_content" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radio"
+            android:layout_width="fill_parent"
+            android:layout_below="@+id/pGR"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="0sp">
+            <RadioButton android:id="@+id/radio_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*1"
+                android:textColor="#36007F"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/radio_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*1.5"
+                android:textColor="#36007F"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/radio_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*2"
+                android:textColor="#36007F"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/radio_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*3"
+                android:textColor="#36007F"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
+    </RelativeLayout>
+</RelativeLayout>

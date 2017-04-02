@@ -18,6 +18,7 @@
         <activity android:name=".ProtocoleActivity" android:configChanges="orientation|screenSize"></activity>
         <activity android:name=".RestoActivity" android:configChanges="orientation|screenSize"></activity>
         <activity android:name=".MenuActivity" android:configChanges="orientation|screenSize"></activity>
+        <activity android:name=".PanierActivity" android:configChanges="orientation|screenSize"></activity>
     </application>
 
 </manifest>

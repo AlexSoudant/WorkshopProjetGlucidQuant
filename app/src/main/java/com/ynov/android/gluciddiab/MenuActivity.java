@@ -1,14 +1,20 @@
 package com.ynov.android.gluciddiab;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ynov.android.gluciddiab.restoUtils.ImageAdapter;
+
+import java.util.ArrayList;
 
 /**
  * Created by admin on 01/04/17.
@@ -36,6 +42,7 @@ public class MenuActivity extends AppCompatActivity {
 
     TextView tvPanier;
     Button btnValid;
+    ListView lvPanier;
 
     // gestion des popups
     //PopupWindow pw;
@@ -48,7 +55,7 @@ public class MenuActivity extends AppCompatActivity {
 
         tvPanier = (TextView) findViewById(R.id.textPanier);
         btnValid = (Button) findViewById(R.id.buttonValidPanier);
-
+        lvPanier = (ListView) findViewById(R.id.listViewPanier);
         // popup window
         //popUpWindow = new PopupWindow(this);
 
@@ -65,15 +72,40 @@ public class MenuActivity extends AppCompatActivity {
 
         gridview.setAdapter(new ImageAdapter(this));
 
+        final ArrayList<String> ArrayPanier = new ArrayList<String>();
+
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 //Toast.makeText(MenuActivity.this, "" + fakedata[position],
                 //        Toast.LENGTH_SHORT).show();
-                tvPanier.append("\n" + "1x" + fakedata[position]);
+                //tvPanier.append("\n" + "1x" + fakedata[position]);
+
+                ArrayPanier.add("1x " + fakedata[position]);
+
+                //menuListAdapter adapter = new menuListAdapter(MenuActivity.this, ArrayPanier);
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MenuActivity.this,android.R.layout.simple_list_item_1,ArrayPanier);
+                lvPanier.setAdapter(adapter);
+
             }
         });
 
+        final Context context = MenuActivity.this;
+
+        btnValid.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+
+                Class destinationActivity = PanierActivity.class;
+
+                Intent startPanierActivityIntent = new Intent(context, destinationActivity);
+
+                startActivity(startPanierActivityIntent);
+
+
+            }
+        });
 
     }
 

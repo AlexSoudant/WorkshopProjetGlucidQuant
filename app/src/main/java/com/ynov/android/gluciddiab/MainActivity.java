@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
         final boolean firstboot = userDetails.getBoolean("firstboot", true);
 
-
         btnProtocoleTransition.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
 
@@ -54,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 }
