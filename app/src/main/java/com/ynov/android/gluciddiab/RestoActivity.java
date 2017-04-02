@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,6 +25,13 @@ public class RestoActivity extends AppCompatActivity{
     TextView restoTitle;
     TextView TestDb;
     Button btnTestDb;
+    CardView cvMcDo;
+    CardView cvKFC;
+
+    Button breakFast;
+    Button lunch;
+    Button snack;
+    Button meal;
 
     private SQLiteDatabase mDb;
     private Toolbar toolbar;
@@ -35,9 +44,12 @@ public class RestoActivity extends AppCompatActivity{
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
-        btnTestDb = (Button) findViewById(R.id.buttonTestDb);
+        //btnTestDb = (Button) findViewById(R.id.buttonTestDb);
 
-        btnTestDb.setOnClickListener(new View.OnClickListener()
+        cvMcDo = (CardView) findViewById(R.id.cardViewMcdo);
+        cvKFC = (CardView) findViewById(R.id.cardViewKfc);
+
+        cvMcDo.setOnClickListener(new View.OnClickListener()
         {
             Context context = RestoActivity.this;
 
@@ -49,6 +61,85 @@ public class RestoActivity extends AppCompatActivity{
             {
                 startActivity(startmenuActivityIntent);
 
+            }
+        });
+
+        cvKFC.setOnClickListener(new View.OnClickListener()
+        {
+            Context context = RestoActivity.this;
+
+            Class destinationActivity = MenuActivity.class;
+
+            Intent startmenuActivityIntent = new Intent(context, destinationActivity);
+
+            public void onClick(View view)
+            {
+                startActivity(startmenuActivityIntent);
+
+            }
+        });
+
+/*        btnTestDb.setOnClickListener(new View.OnClickListener()
+        {
+            Context context = RestoActivity.this;
+
+            Class destinationActivity = MenuActivity.class;
+
+            Intent startmenuActivityIntent = new Intent(context, destinationActivity);
+
+            public void onClick(View view)
+            {
+                startActivity(startmenuActivityIntent);
+
+            }
+        });*/
+
+        breakFast = (Button) findViewById(R.id.buttonBreakFast);
+        lunch = (Button) findViewById(R.id.buttonLunch);
+        snack = (Button) findViewById(R.id.buttonSnack);
+        meal = (Button) findViewById(R.id.buttonMeal);
+
+        breakFast.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                breakFast.setPressed(true);
+                lunch.setPressed(false);
+                snack.setPressed(false);
+                meal.setPressed(false);
+                return true;
+            }
+        });
+
+        lunch.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                breakFast.setPressed(false);
+                lunch.setPressed(true);
+                snack.setPressed(false);
+                meal.setPressed(false);
+                return true;
+            }
+        });
+
+        snack.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                breakFast.setPressed(false);
+                lunch.setPressed(false);
+                snack.setPressed(true);
+                meal.setPressed(false);
+                return true;
+            }
+        });
+
+        meal.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                breakFast.setPressed(false);
+                lunch.setPressed(false);
+                snack.setPressed(false);
+                meal.setPressed(true);
+                return true;
             }
         });
 

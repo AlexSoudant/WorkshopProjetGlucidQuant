@@ -7,13 +7,72 @@
         android:id="@+id/app_bar"/>
 
     <TextView
+        android:id="@+id/mealChoice"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="50dp"
+        android:text="Choisissez le repas de la journée :"
+        android:textSize="20dp"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/buttonBreakFast"
+        android:text="Matin"
+        android:background="@drawable/onpress_button_selector"
+        android:textColor="@drawable/button_text_color"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/mealChoice"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/buttonLunch"
+        android:text="Midi"
+        android:background="@drawable/onpress_button_selector"
+        android:textColor="@drawable/button_text_color"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="18dp"
+        android:layout_alignTop="@+id/buttonBreakFast"
+        android:layout_toRightOf="@+id/buttonBreakFast"
+        android:layout_toEndOf="@+id/buttonBreakFast" />
+
+    <Button
+        android:id="@+id/buttonSnack"
+        android:text="Goûter"
+        android:background="@drawable/onpress_button_selector"
+        android:textColor="@drawable/button_text_color"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="18dp"
+        android:layout_alignTop="@+id/buttonLunch"
+        android:layout_toRightOf="@+id/buttonLunch"
+        android:layout_toEndOf="@+id/buttonLunch" />
+
+    <Button
+        android:id="@+id/buttonMeal"
+        android:text="Soir"
+        android:background="@drawable/onpress_button_selector"
+        android:textColor="@drawable/button_text_color"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignTop="@+id/buttonSnack"
+        android:layout_toRightOf="@+id/buttonSnack"
+        android:layout_toEndOf="@+id/buttonSnack" />
+
+    <TextView
         android:id="@+id/textChoix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choisissez votre restaurant"
+        android:text="Choisissez votre restaurant:"
         android:textSize="24dp"
         android:layout_below="@+id/app_bar"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="150dp"
         android:layout_centerHorizontal="true"/>
 
 
@@ -51,7 +110,7 @@
 
     </android.support.v7.widget.CardView>
 
-    <Button
+<!--    <Button
         android:id="@+id/buttonTestDb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,6 +118,6 @@
         android:layout_centerVertical="true"
         android:layout_below="@+id/cardViewMcdo"
         android:layout_marginTop="130dp"
-        android:text="Vers votre Menu" />
+        android:text="Vers votre Menu" />-->
 
 </RelativeLayout>

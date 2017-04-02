@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.ynov.android.gluciddiab.restoUtils.ImageAdapter;
@@ -21,6 +22,17 @@ import java.util.ArrayList;
  */
 
 public class MenuActivity extends AppCompatActivity {
+
+    Spinner dropdown;
+
+    String[] liste = {
+            "Tous produits",
+            "Boissons",
+            "Sandwiches",
+            "Desserts",
+            "Petit Dej",
+            "Accompagnements"
+    };
 
     private String[] fakedata = {
             "Coca Cola",
@@ -66,6 +78,10 @@ public class MenuActivity extends AppCompatActivity {
         //        initiatePopupWindow(v);
         //    }
         //});
+
+        dropdown = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, liste);
+        dropdown.setAdapter(adapter);
 
         // GridView
         GridView gridview = (GridView) findViewById(R.id.gridviewItems);
