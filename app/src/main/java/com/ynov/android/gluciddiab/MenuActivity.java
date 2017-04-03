@@ -26,6 +26,7 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.ynov.android.gluciddiab.dataUtils.McDoContract;
 import com.ynov.android.gluciddiab.dataUtils.McDoDbHelper;
+import com.ynov.android.gluciddiab.panierUtils.CustomListViewPanierArticle;
 import com.ynov.android.gluciddiab.restoUtils.ImageAdapter;
 
 import java.util.ArrayList;
@@ -227,7 +228,10 @@ public class MenuActivity extends AppCompatActivity {
 
                         //menuListAdapter adapter = new menuListAdapter(MenuActivity.this, ArrayPanier);
 
-                        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MenuActivity.this, android.R.layout.simple_list_item_1, ArrayPanier);
+                        CustomListViewPanierArticle adapter = new
+                                CustomListViewPanierArticle(MenuActivity.this,ArrayPanier);
+
+                        //final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MenuActivity.this, android.R.layout.simple_list_item_1, ArrayPanier);
 
                         lvPanier.setAdapter(adapter);
                         dialog.dismiss();

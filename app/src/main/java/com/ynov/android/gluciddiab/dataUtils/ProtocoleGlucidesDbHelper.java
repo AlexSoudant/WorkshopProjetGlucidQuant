@@ -1,8 +1,12 @@
 package com.ynov.android.gluciddiab.dataUtils;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by admin on 31/03/17.
@@ -38,5 +42,22 @@ public class ProtocoleGlucidesDbHelper extends SQLiteOpenHelper {
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ProtocoleGlucidesContract.ProtocoleGlucidesEntry.TABLE_NAME);
             onCreate(sqLiteDatabase);
         }
+
+    // Getting single contact
+    public List<String> getProtocole(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM protocoleglucidesdata", null);
+        if (cursor != null)
+            cursor.move(id);
+
+        List<String> proto = new ArrayList<String>();
+        proto.add((String)cursor.getString(0));
+        proto.add(cursor.getString(cursor.getColumnIndex(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_LENT)));
+        proto.add(cursor.getString(cursor.getColumnIndex(ProtocoleGlucidesContract.ProtocoleGlucidesEntry.GLU_RAPIDE)));
+        proto.add((String)cursor.getString(3));
+        // return contact
+        return proto;
+    }
 }
 
