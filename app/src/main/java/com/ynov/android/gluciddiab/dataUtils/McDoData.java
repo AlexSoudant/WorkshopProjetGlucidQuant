@@ -139,7 +139,7 @@ public class McDoData {
 
         cv = new ContentValues();
         cv.put(McDoContract.Entrees.CATEGORIE, "Sandwichs");
-        cv.put(McDoContract.Entrees.PRODUCT_NAME, "Cassecroute Pouket Crudités");
+        cv.put(McDoContract.Entrees.PRODUCT_NAME, "Cassecroute Poulet Crudités");
         cv.put(McDoContract.Entrees.GLU_RAPIDE, 1);
         cv.put(McDoContract.Entrees.GLU_LENT, 24);
         list.add(cv);
@@ -160,7 +160,7 @@ public class McDoData {
 
         cv = new ContentValues();
         cv.put(McDoContract.Entrees.CATEGORIE, "Sandwichs");
-        cv.put(McDoContract.Entrees.PRODUCT_NAME, "McWrap Poulet Croustillant & Bacon");
+        cv.put(McDoContract.Entrees.PRODUCT_NAME, "McWrap Poulet Croustillant et Bacon");
         cv.put(McDoContract.Entrees.GLU_RAPIDE, 2);
         cv.put(McDoContract.Entrees.GLU_LENT, 19);
         list.add(cv);
@@ -494,7 +494,7 @@ public class McDoData {
 
         cv = new ContentValues();
         cv.put(McDoContract.Entrees.CATEGORIE, "Desserts");
-        cv.put(McDoContract.Entrees.PRODUCT_NAME, "McFlurry M&M's");
+        cv.put(McDoContract.Entrees.PRODUCT_NAME, "McFlurry MM's");
         cv.put(McDoContract.Entrees.GLU_RAPIDE, 25);
         cv.put(McDoContract.Entrees.GLU_LENT, 3);
 
@@ -593,7 +593,7 @@ public class McDoData {
 
         cv = new ContentValues();
         cv.put(McDoContract.Entrees.CATEGORIE, "Petit déjeuner");
-        cv.put(McDoContract.Entrees.PRODUCT_NAME, "Bacon & Egg McMuffin");
+        cv.put(McDoContract.Entrees.PRODUCT_NAME, "Bacon et Egg McMuffin");
         cv.put(McDoContract.Entrees.GLU_RAPIDE, 2);
         cv.put(McDoContract.Entrees.GLU_LENT, 19);
         list.add(cv);

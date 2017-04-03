@@ -52,13 +52,39 @@ public class ImageAdapter extends BaseAdapter {
 
     // references to our images
     private Integer[] mThumbIds = {
-            R.drawable.cocacola, R.drawable.deluxepotatoes,
-            R.drawable.deuxquatrevingtoriginal, R.drawable.doublecheese,
-            R.drawable.evian, R.drawable.frites,
-            R.drawable.grandpremiumpoulet, R.drawable.ketchup,
-            R.drawable.muffinmyrtille, R.drawable.petitcampagne,
-            R.drawable.petithotdog, R.drawable.sundae,
-            R.drawable.triplecheeseburger
+            R.drawable.mcdobigmac,R.drawable.mcdoroyaldeluxe,
+            R.drawable.mcdoroyalbacon,R.drawable.mcdoroyalcheese,
+            R.drawable.mcdodoublecheese,R.drawable.mcdohamburger,
+            R.drawable.mcdocheeseburger,R.drawable.mcdomcchicken,
+            R.drawable.mcdochickenmcnuggetsquatre,R.drawable.mcdochickenmcnuggetssix,
+            R.drawable.mcdochickenmcnuggetsneuf,R.drawable.mcdochickenmcnuggetsvingt,
+            R.drawable.mcdomcfish,R.drawable.mcdofiletofish,
+            R.drawable.mcdocroquemcdo,R.drawable.nopicture,
+            R.drawable.mcdomcwrappouletcrudites,R.drawable.mcdom,
+            R.drawable.mcdombacon,R.drawable.mcdomcwrappouletbacon,R.drawable.mcdomcwrappouletcroustillantpoivre,
+            R.drawable.mcdoptitranchwrap,R.drawable.nopicture,
+            R.drawable.mcdopetitefrite,R.drawable.mcdomoyennefrite,
+            R.drawable.mcdograndefrite,R.drawable.mcdomoyennepotatoes,
+            R.drawable.mcdograndepotatoes,R.drawable.mcdoptitesalade,
+            R.drawable.mcdoptitetomates,R.drawable.mcdococacolalightquarantecl,
+            R.drawable.mcdococacolalightquarantecl,R.drawable.mcdococacolazeroquarantecl,
+            R.drawable.mcdospritequarantecl,R.drawable.mcdofantaquarantecl,
+            R.drawable.mcdothelipton,R.drawable.mcdominutemaidtrentecl,
+            R.drawable.mcdobadoittrentetroiscl,R.drawable.mcdoeviantrentetroiscl,
+            R.drawable.mcdococacolavinigtcinqcl,R.drawable.mcdococacolalightvingtcinqcl,
+            R.drawable.mcdococacolazerovingtcinqcl,R.drawable.mcdospritevingtcinqcl,
+            R.drawable.mcdofantavingtcinqcl,R.drawable.mcdothelipton,
+            R.drawable.mcdominutemaidvingtcl,R.drawable.mcdoeviantrentetroiscl,
+            R.drawable.mcdoptitjusbiovingtcl,R.drawable.mcdosaladecaesar,
+            R.drawable.mcdosaladepatemozza,R.drawable.nopicture,
+            R.drawable.mcdosundaenappagesaveurcaramel,R.drawable.mcdobacconeggmcmuffin,
+            R.drawable.mcdopancakes,R.drawable.nopicture,
+            R.drawable.mcdomuffinchocolat,R.drawable.nopicture,
+            R.drawable.mcdograndcafesagafredo,R.drawable.mcdothelipton,
+            R.drawable.mcdocafeexpressosegafredo,R.drawable.mcdoristretto,
+            R.drawable.nopicture,R.drawable.nopicture,
+            R.drawable.nopicture
+
     };
 
 }

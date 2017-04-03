@@ -19,6 +19,7 @@
         android:id="@+id/panierButtonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="250sp"
         android:text="supprimer"/>
 
 </LinearLayout>

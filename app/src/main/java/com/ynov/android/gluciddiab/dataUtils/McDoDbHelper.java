@@ -27,8 +27,9 @@ public class McDoDbHelper extends SQLiteOpenHelper {
                 McDoContract.Entrees.CATEGORIE + " TEXT NOT NULL, " +
                 McDoContract.Entrees.PRODUCT_NAME + " TEXT NOT NULL, " +
                 McDoContract.Entrees.GLU_RAPIDE + " NUMBER, " +
-                McDoContract.Entrees.GLU_LENT + " NUMBER), " +
-                McDoContract.Entrees.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP ";
+                McDoContract.Entrees.GLU_LENT + " NUMBER, " +
+                McDoContract.Entrees.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP " +
+                ");";
 
         sqLiteDatabase.execSQL(SQL_CREATE_LIST_TABLE);
 

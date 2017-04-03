@@ -54,6 +54,8 @@ public class PanierActivity extends AppCompatActivity {
         Bundle extras = intentThatStartedThisActivity.getExtras();
         final String mealTime = extras.getString("EXTRA_MEAL");
         final ArrayList<String> menuChoice = extras.getStringArrayList("EXTRA_MENU");
+        final ArrayList<String> GluLent = extras.getStringArrayList("EXTRA_GLULENT");
+        final ArrayList<String> GluRapide = extras.getStringArrayList("EXTRA_GLURAPIDE");
 
 
         mProgressBar1 = (ProgressBar) findViewById(R.id.pGL);
@@ -84,7 +86,7 @@ public class PanierActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(PanierActivity.this, "Menu: " + menuChoice + "Repas: " + mealTime , Toast.LENGTH_SHORT).show();
+                Toast.makeText(PanierActivity.this, "Menu: " + menuChoice + " Repas: " + mealTime + " gluLent: " + GluLent + " glurapide: " + GluRapide, Toast.LENGTH_SHORT).show();
 
             }
         });
