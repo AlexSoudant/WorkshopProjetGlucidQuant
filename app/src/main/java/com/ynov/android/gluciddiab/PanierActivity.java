@@ -7,6 +7,7 @@ package com.ynov.android.gluciddiab;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -26,6 +27,8 @@ import java.util.List;
 
 
 public class PanierActivity extends AppCompatActivity {
+
+    private Toolbar toolbar;
     ListView mListView;
     private ProgressBar mProgressBar1;
     private ProgressBar mProgressBar2;
@@ -49,6 +52,10 @@ public class PanierActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.panier);
+
+
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
 
         Intent intentThatStartedThisActivity = getIntent();
 

@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.util.ArraySet;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,11 +33,15 @@ import com.ynov.android.gluciddiab.restoUtils.ImageAdapter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+
 /**
  * Created by admin on 01/04/17.
  */
 
 public class MenuActivity extends AppCompatActivity {
+
+    private Toolbar toolbar;
 
     Spinner dropdown;
 
@@ -93,6 +98,9 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
 
         // Connection a la db
 

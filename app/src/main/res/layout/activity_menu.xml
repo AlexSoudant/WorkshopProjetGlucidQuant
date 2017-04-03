@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:id="@+id/menu_layout">
 
+
+    <include layout="@layout/app_bar"
+        android:id="@+id/app_bar"/>
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="wrap_content"
