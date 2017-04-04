@@ -28,6 +28,7 @@ public class McDoDbHelper extends SQLiteOpenHelper {
                 McDoContract.Entrees.PRODUCT_NAME + " TEXT NOT NULL, " +
                 McDoContract.Entrees.GLU_RAPIDE + " NUMBER, " +
                 McDoContract.Entrees.GLU_LENT + " NUMBER, " +
+                McDoContract.Entrees.IMAGE_NAME + " TEXT NOT NULL, " +
                 McDoContract.Entrees.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP " +
                 ");";
 

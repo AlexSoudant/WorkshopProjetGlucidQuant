@@ -15,6 +15,7 @@ public class McDoContract {
         public static final String PRODUCT_NAME = "NomDuProduit";
         public static final String GLU_RAPIDE = "GlucideRapide";
         public static final String GLU_LENT = "GlucideLent";
+        public static final String IMAGE_NAME = "NomImage";
         public static final String COLUMN_TIMESTAMP = "Timestamp";
     }
 }

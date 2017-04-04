@@ -373,7 +373,13 @@ public class MenuActivity extends AppCompatActivity {
 
                 ImageView image = (ImageView) dialog.findViewById(R.id.DialogImage);
 
-                int drawableResourceId = getResources().getIdentifier("mcdodoublecheese", "drawable", getPackageName());
+                Cursor cursorImage = selectImageItems(ArrayItemNames.get(position));
+
+                cursorImage.moveToFirst();
+
+                String imageName = cursorImage.getString(cursorImage.getColumnIndex(McDoContract.Entrees.IMAGE_NAME));
+
+                int drawableResourceId = getResources().getIdentifier(imageName, "drawable", getPackageName());
 
                 image.setImageResource(drawableResourceId);
 
@@ -478,7 +484,22 @@ public class MenuActivity extends AppCompatActivity {
         return mDb.query(McDoContract.Entrees.TABLE_NAME, FROM, where, whereArgs, null, null, McDoContract.Entrees.COLUMN_TIMESTAMP);
 
 
+    }
 
+
+    private Cursor selectImageItems(String nomItem) {
+        String[] FROM = {
+                McDoContract.Entrees.IMAGE_NAME,
+                McDoContract.Entrees.PRODUCT_NAME
+        };
+
+        String where = McDoContract.Entrees.PRODUCT_NAME + "=?";
+
+        String[] whereArgs = new String[] { // The value of the column specified above for the rows to be included in the response
+                nomItem
+        };
+
+        return mDb.query(McDoContract.Entrees.TABLE_NAME, FROM, where, whereArgs, null, null, McDoContract.Entrees.COLUMN_TIMESTAMP);
 
 
     }
