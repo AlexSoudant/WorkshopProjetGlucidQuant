@@ -186,7 +186,16 @@ public class RestoActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.item_settings:
-                Toast.makeText(RestoActivity.this, "Paramètre" , Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RestoActivity.this, "Protocole" , Toast.LENGTH_SHORT).show();
+
+                Context context = RestoActivity.this;
+
+                Class destinationActivity = ProtocoleActivity.class;
+
+                Intent startProtocoleActivityIntent = new Intent(context, destinationActivity);
+
+                startActivity(startProtocoleActivityIntent);
+
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.support.v4.util.ArraySet;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -429,6 +432,34 @@ public class MenuActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_settings:
+                //Toast.makeText(RestoActivity.this, "Protocole" , Toast.LENGTH_SHORT).show();
+
+                Context context = MenuActivity.this;
+
+                Class destinationActivity = ProtocoleActivity.class;
+
+                Intent startProtocoleActivityIntent = new Intent(context, destinationActivity);
+
+                startActivity(startProtocoleActivityIntent);
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     /*private void initiatePopupWindow(View v) {
         try {

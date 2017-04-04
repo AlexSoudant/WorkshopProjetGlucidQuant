@@ -4,10 +4,14 @@ package com.ynov.android.gluciddiab;
  * Created by admin on 02/04/17.
  */
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -97,6 +101,8 @@ public class PanierActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
@@ -134,5 +140,35 @@ public class PanierActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_settings:
+                //Toast.makeText(RestoActivity.this, "Protocole" , Toast.LENGTH_SHORT).show();
+
+                Context context = PanierActivity.this;
+
+                Class destinationActivity = ProtocoleActivity.class;
+
+                Intent startProtocoleActivityIntent = new Intent(context, destinationActivity);
+
+                startActivity(startProtocoleActivityIntent);
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
 

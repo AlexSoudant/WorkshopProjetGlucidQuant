@@ -4,7 +4,7 @@
 
 
     <item   android2:id="@+id/item_settings"
-        android2:title="paramètres"
+        android2:title="Protocole"
         app:showsAsAction="always" />
 
 </menu>
