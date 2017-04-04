@@ -10,9 +10,9 @@ import android.provider.BaseColumns;
 
 public class McDoContract {
     public static final class Entrees implements BaseColumns {
-        public static final String TABLE_NAME = "Nom de la table";
+        public static final String TABLE_NAME = "McDoData";
         public static final String CATEGORIE = "Catégorie";
-        public static final String PRODUCT_NAME = "Nom du produit";
+        public static final String PRODUCT_NAME = "NomDuProduit";
         public static final String GLU_RAPIDE = "GlucideRapide";
         public static final String GLU_LENT = "GlucideLent";
         public static final String COLUMN_TIMESTAMP = "Timestamp";

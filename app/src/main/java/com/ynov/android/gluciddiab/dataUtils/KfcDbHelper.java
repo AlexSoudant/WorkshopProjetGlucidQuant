@@ -21,7 +21,7 @@ public class KfcDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         final String SQL_CREATE_KFCLIST_TABLE = "CREATE TABLE " +
                 KfcContract.KFCListEntry.TABLE_NAME + " (" +
-                KfcContract.KFCListEntry._ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KfcContract.KFCListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KfcContract.KFCListEntry.CATEGORIE + " TEXT NOT NULL, " +
                 KfcContract.KFCListEntry.PRODUCT_NAME + " TEXT NOT NULL, " +
                 KfcContract.KFCListEntry.GLU_RAPIDE + " REAL NOT NULL, " +
