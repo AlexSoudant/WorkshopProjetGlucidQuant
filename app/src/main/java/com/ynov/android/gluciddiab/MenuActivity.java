@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -118,10 +119,13 @@ public class MenuActivity extends AppCompatActivity {
 
         mDb = dbHelper.getReadableDatabase();
 
-        Cursor cursor = getItem();
+        final ArrayList<String> ArrayItemNames = new ArrayList<String>();
+
+/*        Cursor cursor = getItem();
         cursor.moveToFirst();
 
         //int i = 0;
+
         final ArrayList<String> ArrayItemNames = new ArrayList<String>();
 
         if (cursor.moveToFirst()) {
@@ -130,7 +134,7 @@ public class MenuActivity extends AppCompatActivity {
             } while (cursor.moveToNext());
         }
 
-        cursor.close();
+        cursor.close();*/
 
         // connexion a protocole
 
@@ -204,11 +208,13 @@ public class MenuActivity extends AppCompatActivity {
 
         dropdown.setAdapter(adapter);
 
-        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        dropdown.setOnItemSelectedListener(new OnItemSelectedListener() {
+
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Object object = adapter.getItem(position);
+                //Object object = adapter.getItem(position);
 
                 Toast.makeText(parent.getContext(),
                         "OnItemSelectedListener : " + parent.getItemAtPosition(position).toString(),
@@ -216,12 +222,10 @@ public class MenuActivity extends AppCompatActivity {
 
                 if (position == 0) {
                     gridview.setAdapter(new SaladeAdapter(parent.getContext()));
+                    ArrayItemNames.clear();
 
                     Cursor cursor = selectCategoryItems("Salades");
                     cursor.moveToFirst();
-
-                    //int i = 0;
-                    final ArrayList<String> ArrayItemNames = new ArrayList<String>();
 
                     if (cursor.moveToFirst()) {
                         do {
@@ -230,27 +234,105 @@ public class MenuActivity extends AppCompatActivity {
                     }
 
                     cursor.close();
+
+                    getArrayList(ArrayItemNames);
+
                 }
 
-                else if (position == 1)
+                else if (position == 1) {
+                    ArrayItemNames.clear();
                     gridview.setAdapter(new SandwichAdapter(parent.getContext()));
 
+                    Cursor cursor = selectCategoryItems("Sandwichs");
+                    cursor.moveToFirst();
 
-                else if (position == 2)
+                    if (cursor.moveToFirst()) {
+                        do {
+                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                        } while (cursor.moveToNext());
+                    }
+
+                    cursor.close();
+
+                    getArrayList(ArrayItemNames);
+
+                }
+
+                else if (position == 2){
+                    ArrayItemNames.clear();
                     gridview.setAdapter(new PetitdejAdapter(parent.getContext()));
 
+                    Cursor cursor = selectCategoryItems("Petit déjeuner");
+                    cursor.moveToFirst();
 
-                else if (position == 3)
+                    if (cursor.moveToFirst()) {
+                        do {
+                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                        } while (cursor.moveToNext());
+                    }
+
+                    cursor.close();
+
+                    getArrayList(ArrayItemNames);
+
+                }
+
+                else if (position == 3){
+                    ArrayItemNames.clear();
                     gridview.setAdapter(new DessertAdapter(parent.getContext()));
 
+                    Cursor cursor = selectCategoryItems("Desserts");
+                    cursor.moveToFirst();
 
-                else if (position == 4)
+                    if (cursor.moveToFirst()) {
+                        do {
+                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                        } while (cursor.moveToNext());
+                    }
+
+                    cursor.close();
+
+                    getArrayList(ArrayItemNames);
+
+                }
+
+                else if (position == 4){
+                    ArrayItemNames.clear();
                     gridview.setAdapter(new AccompagnementAdapter(parent.getContext()));
 
+                    Cursor cursor = selectCategoryItems("Accompagnements");
+                    cursor.moveToFirst();
 
-                else if (position == 5)
+                    if (cursor.moveToFirst()) {
+                        do {
+                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                        } while (cursor.moveToNext());
+                    }
+
+                    cursor.close();
+
+                    getArrayList(ArrayItemNames);
+
+                }
+
+                else if (position == 5){
+                    ArrayItemNames.clear();
                     gridview.setAdapter(new BoissonAdapter(parent.getContext()));
 
+                    Cursor cursor = selectCategoryItems("Boissons");
+                    cursor.moveToFirst();
+
+                    if (cursor.moveToFirst()) {
+                        do {
+                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                        } while (cursor.moveToNext());
+                    }
+
+                    cursor.close();
+
+                    getArrayList(ArrayItemNames);
+
+                }
             }
 
             @Override
@@ -258,8 +340,10 @@ public class MenuActivity extends AppCompatActivity {
 
             }
 
+
         });
 
+        //MenuActivity.this.dropdown.getOnItemSelectedListener();
 
         gridview.setAdapter(new ImageAdapter(this));
 
@@ -288,7 +372,10 @@ public class MenuActivity extends AppCompatActivity {
                 tvGluRapide.setText("Glu Rapide: " + ArrayProtoRapide.get(position));
 
                 ImageView image = (ImageView) dialog.findViewById(R.id.DialogImage);
-                image.setImageResource(R.drawable.mcdodoublecheese);
+
+                int drawableResourceId = getResources().getIdentifier("mcdodoublecheese", "drawable", getPackageName());
+
+                image.setImageResource(drawableResourceId);
 
                 Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
                 // if button is clicked, close the custom dialog
@@ -488,4 +575,10 @@ public class MenuActivity extends AppCompatActivity {
     //        pw.dismiss();
     //    }
     //};
+
+    private void getArrayList(ArrayList result){
+        // Now the data has been "returned" (as pointed out, that's not
+        // the right terminology)
+    }
+
 }
