@@ -28,11 +28,18 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.ynov.android.gluciddiab.dataUtils.McDoContract;
 import com.ynov.android.gluciddiab.dataUtils.McDoDbHelper;
 import com.ynov.android.gluciddiab.panierUtils.CustomListViewPanierArticle;
+import com.ynov.android.gluciddiab.restoUtils.AccompagnementAdapter;
+import com.ynov.android.gluciddiab.restoUtils.BoissonAdapter;
+import com.ynov.android.gluciddiab.restoUtils.DessertAdapter;
 import com.ynov.android.gluciddiab.restoUtils.ImageAdapter;
+import com.ynov.android.gluciddiab.restoUtils.PetitdejAdapter;
+import com.ynov.android.gluciddiab.restoUtils.SaladeAdapter;
+import com.ynov.android.gluciddiab.restoUtils.SandwichAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.ynov.android.gluciddiab.R.id.spinner;
 
 
 /**
@@ -179,8 +186,8 @@ public class MenuActivity extends AppCompatActivity {
         btnValid = (Button) findViewById(R.id.buttonValidPanier);
         lvPanier = (ListView) findViewById(R.id.listViewPanier);
         // GridView
-        GridView gridview = (GridView) findViewById(R.id.gridviewItems);
-        dropdown = (Spinner) findViewById(R.id.spinner);
+        final GridView gridview = (GridView) findViewById(R.id.gridviewItems);
+        dropdown = (Spinner) findViewById(spinner);
 
 
         Intent intentThatStartedThisActivity = getIntent();
@@ -191,7 +198,65 @@ public class MenuActivity extends AppCompatActivity {
 
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, stringArray);
+
         dropdown.setAdapter(adapter);
+
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object object = adapter.getItem(position);
+
+                Toast.makeText(parent.getContext(),
+                        "OnItemSelectedListener : " + parent.getItemAtPosition(position).toString(),
+                        Toast.LENGTH_SHORT).show();
+
+                if (position == 0) {
+                    gridview.setAdapter(new SaladeAdapter(parent.getContext()));
+
+                    Cursor cursor = selectCategoryItems("Salades");
+                    cursor.moveToFirst();
+
+                    //int i = 0;
+                    final ArrayList<String> ArrayItemNames = new ArrayList<String>();
+
+                    if (cursor.moveToFirst()) {
+                        do {
+                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                        } while (cursor.moveToNext());
+                    }
+
+                    cursor.close();
+                }
+
+                else if (position == 1)
+                    gridview.setAdapter(new SandwichAdapter(parent.getContext()));
+
+
+                else if (position == 2)
+                    gridview.setAdapter(new PetitdejAdapter(parent.getContext()));
+
+
+                else if (position == 3)
+                    gridview.setAdapter(new DessertAdapter(parent.getContext()));
+
+
+                else if (position == 4)
+                    gridview.setAdapter(new AccompagnementAdapter(parent.getContext()));
+
+
+                else if (position == 5)
+                    gridview.setAdapter(new BoissonAdapter(parent.getContext()));
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
+
 
         gridview.setAdapter(new ImageAdapter(this));
 
@@ -306,6 +371,28 @@ public class MenuActivity extends AppCompatActivity {
                 McDoContract.Entrees.COLUMN_TIMESTAMP
         );
     }
+
+
+    private Cursor selectCategoryItems(String categorie) {
+        String[] FROM = {
+                McDoContract.Entrees.CATEGORIE,
+                McDoContract.Entrees.PRODUCT_NAME
+        };
+
+        String where = McDoContract.Entrees.CATEGORIE + "=?";
+
+        String[] whereArgs = new String[] { // The value of the column specified above for the rows to be included in the response
+                categorie
+        };
+
+        return mDb.query(McDoContract.Entrees.TABLE_NAME, FROM, where, whereArgs, null, null, McDoContract.Entrees.COLUMN_TIMESTAMP);
+
+
+
+
+
+    }
+
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
