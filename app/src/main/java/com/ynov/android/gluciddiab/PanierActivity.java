@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -42,6 +43,8 @@ public class PanierActivity extends AppCompatActivity {
     private RadioButton mRadio;
     private List<String> protocoles;
     private CustomListView adapter;
+
+    private Toolbar toolbar;
     /*String[] prenoms = new String[]{
             "Big Mac Maxi", "frite Maxi", "coca-cola", "sunday"
     };
@@ -56,6 +59,9 @@ public class PanierActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.panier);
+
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
 
         Intent intentThatStartedThisActivity = getIntent();
 
@@ -194,6 +200,8 @@ public class PanierActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }
 

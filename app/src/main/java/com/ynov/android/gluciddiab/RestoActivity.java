@@ -188,19 +188,20 @@ public class RestoActivity extends AppCompatActivity{
             case R.id.item_settings:
                 //Toast.makeText(RestoActivity.this, "Protocole" , Toast.LENGTH_SHORT).show();
 
-                Context context = RestoActivity.this;
+                if(!MealTime.equals("")) {
+                    Context context = RestoActivity.this;
 
-                Class destinationActivity = ProtocoleActivity.class;
+                    Class destinationActivity = ProtocoleActivity.class;
 
-                Intent startProtocoleActivityIntent = new Intent(context, destinationActivity);
+                    Intent startProtocoleActivityIntent = new Intent(context, destinationActivity);
 
-                startActivity(startProtocoleActivityIntent);
+                    startActivity(startProtocoleActivityIntent);
+                }else{Toast.makeText(RestoActivity.this, "Veuillez choisir un repas" , Toast.LENGTH_SHORT).show();}
 
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

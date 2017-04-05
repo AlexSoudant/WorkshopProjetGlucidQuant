@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.util.ArraySet;
 import android.support.v7.app.AppCompatActivity;
@@ -25,10 +24,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.ynov.android.gluciddiab.dataUtils.KfcContract;
+import com.ynov.android.gluciddiab.dataUtils.KfcDbHelper;
 import com.ynov.android.gluciddiab.dataUtils.McDoContract;
 import com.ynov.android.gluciddiab.dataUtils.McDoDbHelper;
 import com.ynov.android.gluciddiab.panierUtils.CustomListViewPanierArticle;
@@ -36,6 +35,14 @@ import com.ynov.android.gluciddiab.restoUtils.AccompagnementAdapter;
 import com.ynov.android.gluciddiab.restoUtils.BoissonAdapter;
 import com.ynov.android.gluciddiab.restoUtils.DessertAdapter;
 import com.ynov.android.gluciddiab.restoUtils.ImageAdapter;
+import com.ynov.android.gluciddiab.restoUtils.KfcAccompagnementAdapter;
+import com.ynov.android.gluciddiab.restoUtils.KfcBoissonAdapter;
+import com.ynov.android.gluciddiab.restoUtils.KfcBucketAdapter;
+import com.ynov.android.gluciddiab.restoUtils.KfcDessertAdapter;
+import com.ynov.android.gluciddiab.restoUtils.KfcPieceAdapter;
+import com.ynov.android.gluciddiab.restoUtils.KfcSaladeAdapter;
+import com.ynov.android.gluciddiab.restoUtils.KfcSandwichAdapter;
+import com.ynov.android.gluciddiab.restoUtils.KfcSauceAdapter;
 import com.ynov.android.gluciddiab.restoUtils.PetitdejAdapter;
 import com.ynov.android.gluciddiab.restoUtils.SaladeAdapter;
 import com.ynov.android.gluciddiab.restoUtils.SandwichAdapter;
@@ -99,11 +106,21 @@ public class MenuActivity extends AppCompatActivity {
 
     SQLiteDatabase mDb;
     String ItemNames;
+
+    String[] stringArray;
+    ArrayList<String> ArrayProtoLent;
+    ArrayList<String> ArrayProtoRapide;
+    Cursor cursorImage;
+    String imageName;
+
+    ArrayList<String> ArrayItemNames;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,13 +130,138 @@ public class MenuActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
+        Intent intentThatStartedThisActivity = getIntent();
+
+        Bundle extras = intentThatStartedThisActivity.getExtras();
+        mealTime = extras.getString("EXTRA_MEAL");
+        restoChoice = extras.getString("EXTRA_RESTO");
+
+
+        // Malo insert code for kfc
+
+
         // Connection a la db
 
-        McDoDbHelper dbHelper = new McDoDbHelper(this);
+        if(restoChoice.equals("McDo")) {
 
-        mDb = dbHelper.getReadableDatabase();
+            McDoDbHelper dbHelper = new McDoDbHelper(this);
 
-        final ArrayList<String> ArrayItemNames = new ArrayList<String>();
+            mDb = dbHelper.getReadableDatabase();
+
+            Cursor cursorProtoLent = getItem();
+
+            cursorProtoLent.moveToFirst();
+
+            //int i = 0;
+            ArrayProtoLent = new ArrayList<String>();
+
+            if (cursorProtoLent.moveToFirst()) {
+                do {
+                    ArrayProtoLent.add(cursorProtoLent.getString(cursorProtoLent.getColumnIndex(McDoContract.Entrees.GLU_LENT)));
+                } while (cursorProtoLent.moveToNext());
+            }
+
+            cursorProtoLent.close();
+
+            Cursor cursorProtoRapide = getItem();
+            cursorProtoRapide.moveToFirst();
+
+            //int i = 0;
+            ArrayProtoRapide = new ArrayList<String>();
+
+            if (cursorProtoRapide.moveToFirst()) {
+                do {
+                    ArrayProtoRapide.add(cursorProtoRapide.getString(cursorProtoRapide.getColumnIndex(McDoContract.Entrees.GLU_RAPIDE)));
+                } while (cursorProtoRapide.moveToNext());
+            }
+
+            cursorProtoRapide.close();
+
+            // cursor categories
+
+            Cursor cursorCat = getItem();
+            cursorCat.moveToFirst();
+
+            //int i = 0;
+            final ArrayList<String> ArrayCat = new ArrayList<String>();
+
+            if (cursorCat.moveToFirst()) {
+                do {
+                    ArrayCat.add(cursorCat.getString(cursorCat.getColumnIndex(McDoContract.Entrees.CATEGORIE)));
+                } while (cursorCat.moveToNext());
+            }
+
+            cursorCat.close();
+
+            ArraySet setCat = new ArraySet(ArrayCat);
+            Object[] arraySet = setCat.toArray();
+
+            stringArray = Arrays.copyOf(arraySet, arraySet.length, String[].class);
+
+        }
+
+        if(restoChoice.equals("KFC")) {
+
+            KfcDbHelper dbHelper = new KfcDbHelper(this);
+
+            mDb = dbHelper.getReadableDatabase();
+
+            Cursor cursorProtoLent = getKfcItem();
+
+            cursorProtoLent.moveToFirst();
+
+            //int i = 0;
+            ArrayProtoLent = new ArrayList<String>();
+
+            if (cursorProtoLent.moveToFirst()) {
+                do {
+                    ArrayProtoLent.add(cursorProtoLent.getString(cursorProtoLent.getColumnIndex(KfcContract.KFCListEntry.GLU_LENT)));
+                } while (cursorProtoLent.moveToNext());
+            }
+
+            cursorProtoLent.close();
+
+            Cursor cursorProtoRapide = getKfcItem();
+            cursorProtoRapide.moveToFirst();
+
+            //int i = 0;
+            ArrayProtoRapide = new ArrayList<String>();
+
+            if (cursorProtoRapide.moveToFirst()) {
+                do {
+                    ArrayProtoRapide.add(cursorProtoRapide.getString(cursorProtoRapide.getColumnIndex(KfcContract.KFCListEntry.GLU_RAPIDE)));
+                } while (cursorProtoRapide.moveToNext());
+            }
+
+            cursorProtoRapide.close();
+
+            // cursor categories
+
+            Cursor cursorCat = getKfcItem();
+            cursorCat.moveToFirst();
+
+            //int i = 0;
+            final ArrayList<String> ArrayCat = new ArrayList<String>();
+
+            if (cursorCat.moveToFirst()) {
+                do {
+                    ArrayCat.add(cursorCat.getString(cursorCat.getColumnIndex(KfcContract.KFCListEntry.CATEGORIE)));
+                } while (cursorCat.moveToNext());
+            }
+
+            cursorCat.close();
+
+            ArraySet setCat = new ArraySet(ArrayCat);
+            Object[] arraySet = setCat.toArray();
+
+            stringArray = Arrays.copyOf(arraySet, arraySet.length, String[].class);
+
+            //return stringArray
+        }
+
+
+
+        ArrayItemNames = new ArrayList<String>();
 
 /*        Cursor cursor = getItem();
         cursor.moveToFirst();
@@ -139,55 +281,6 @@ public class MenuActivity extends AppCompatActivity {
         // connexion a protocole
 
 
-        Cursor cursorProtoLent = getItem();
-        cursorProtoLent.moveToFirst();
-
-        //int i = 0;
-        final ArrayList<String> ArrayProtoLent = new ArrayList<String>();
-
-        if (cursorProtoLent.moveToFirst()) {
-            do {
-                ArrayProtoLent.add(cursorProtoLent.getString(cursorProtoLent.getColumnIndex(McDoContract.Entrees.GLU_LENT)));
-            } while (cursorProtoLent.moveToNext());
-        }
-
-        cursorProtoLent.close();
-
-        Cursor cursorProtoRapide = getItem();
-        cursorProtoRapide.moveToFirst();
-
-        //int i = 0;
-        final ArrayList<String> ArrayProtoRapide = new ArrayList<String>();
-
-        if (cursorProtoRapide.moveToFirst()) {
-            do {
-                ArrayProtoRapide.add(cursorProtoRapide.getString(cursorProtoRapide.getColumnIndex(McDoContract.Entrees.GLU_RAPIDE)));
-            } while (cursorProtoRapide.moveToNext());
-        }
-
-        cursorProtoRapide.close();
-
-        // cursor categories
-
-        Cursor cursorCat = getItem();
-        cursorCat.moveToFirst();
-
-        //int i = 0;
-        final ArrayList<String> ArrayCat = new ArrayList<String>();
-
-        if (cursorCat.moveToFirst()) {
-            do {
-                ArrayCat.add(cursorCat.getString(cursorCat.getColumnIndex(McDoContract.Entrees.CATEGORIE)));
-            } while (cursorCat.moveToNext());
-        }
-
-        cursorCat.close();
-
-        ArraySet setCat = new ArraySet(ArrayCat);
-        Object[] arraySet = setCat.toArray();
-
-        String[] stringArray = Arrays.copyOf(arraySet, arraySet.length, String[].class);
-
 
         tvPanier = (TextView) findViewById(R.id.textPanier);
         btnValid = (Button) findViewById(R.id.buttonValidPanier);
@@ -197,39 +290,281 @@ public class MenuActivity extends AppCompatActivity {
         dropdown = (Spinner) findViewById(spinner);
 
 
-        Intent intentThatStartedThisActivity = getIntent();
-
-        Bundle extras = intentThatStartedThisActivity.getExtras();
-        mealTime = extras.getString("EXTRA_MEAL");
-        restoChoice = extras.getString("EXTRA_RESTO");
-
-
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, stringArray);
 
         dropdown.setAdapter(adapter);
 
+        if(restoChoice.equals("McDo")) {
 
-        dropdown.setOnItemSelectedListener(new OnItemSelectedListener() {
+            dropdown.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    //Object object = adapter.getItem(position);
+
+                    //Toast.makeText(parent.getContext(),
+                    //        "OnItemSelectedListener : " + parent.getItemAtPosition(position).toString(),
+                    //        Toast.LENGTH_SHORT).show();
+
+                    if (position == 0) {
+                        gridview.setAdapter(new SaladeAdapter(parent.getContext()));
+                        ArrayItemNames.clear();
+
+                        Cursor cursor = selectCategoryItems("Salades");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    } else if (position == 1) {
+                        ArrayItemNames.clear();
+                        gridview.setAdapter(new SandwichAdapter(parent.getContext()));
+
+                        Cursor cursor = selectCategoryItems("Sandwichs");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    } else if (position == 2) {
+                        ArrayItemNames.clear();
+                        gridview.setAdapter(new PetitdejAdapter(parent.getContext()));
+
+                        Cursor cursor = selectCategoryItems("Petit déjeuner");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    } else if (position == 3) {
+                        ArrayItemNames.clear();
+                        gridview.setAdapter(new DessertAdapter(parent.getContext()));
+
+                        Cursor cursor = selectCategoryItems("Desserts");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    } else if (position == 4) {
+                        ArrayItemNames.clear();
+                        gridview.setAdapter(new AccompagnementAdapter(parent.getContext()));
+
+                        Cursor cursor = selectCategoryItems("Accompagnements");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    } else if (position == 5) {
+                        ArrayItemNames.clear();
+                        gridview.setAdapter(new BoissonAdapter(parent.getContext()));
+
+                        Cursor cursor = selectCategoryItems("Boissons");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
 
 
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //Object object = adapter.getItem(position);
+            });
 
-                Toast.makeText(parent.getContext(),
-                        "OnItemSelectedListener : " + parent.getItemAtPosition(position).toString(),
-                        Toast.LENGTH_SHORT).show();
+        }
 
-                if (position == 0) {
-                    gridview.setAdapter(new SaladeAdapter(parent.getContext()));
+        else if(restoChoice.equals("KFC")) {
+
+            dropdown.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    //Object object = adapter.getItem(position);
+
+                    //Toast.makeText(parent.getContext(),
+                    //        "OnItemSelectedListener : " + parent.getItemAtPosition(position).toString(),
+                    //        Toast.LENGTH_SHORT).show();
+
+                    if (position == 0) {
+                        gridview.setAdapter(new KfcSauceAdapter(parent.getContext()));
+                        ArrayItemNames.clear();
+
+                        Cursor cursor = KfcselectCategoryItems("Sauces");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(KfcContract.KFCListEntry.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    } else if (position == 1) {
+                        ArrayItemNames.clear();
+                        gridview.setAdapter(new KfcBoissonAdapter(parent.getContext()));
+
+                        Cursor cursor = KfcselectCategoryItems("Boissons Froides");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(KfcContract.KFCListEntry.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    } else if (position == 2) {
+                        ArrayItemNames.clear();
+                        gridview.setAdapter(new KfcSaladeAdapter(parent.getContext()));
+
+                        Cursor cursor = KfcselectCategoryItems("Salades");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(KfcContract.KFCListEntry.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    } else if (position == 3) {
+                        ArrayItemNames.clear();
+                        gridview.setAdapter(new KfcBucketAdapter(parent.getContext()));
+
+                        Cursor cursor = KfcselectCategoryItems("Buckets à partager");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(KfcContract.KFCListEntry.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    } else if (position == 4) {
+                        ArrayItemNames.clear();
+                        gridview.setAdapter(new KfcDessertAdapter(parent.getContext()));
+
+                        Cursor cursor = KfcselectCategoryItems("Desserts");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(KfcContract.KFCListEntry.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    } else if (position == 5) {
+                        ArrayItemNames.clear();
+                        gridview.setAdapter(new KfcPieceAdapter(parent.getContext()));
+
+                        Cursor cursor = KfcselectCategoryItems("Pièces de Poulet / Poisson");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(KfcContract.KFCListEntry.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                    }
+
+                    else if (position == 6) {
+                        ArrayItemNames.clear();
+                        gridview.setAdapter(new KfcAccompagnementAdapter(parent.getContext()));
+
+                        Cursor cursor = KfcselectCategoryItems("Accompagnements");
+                        cursor.moveToFirst();
+
+                        if (cursor.moveToFirst()) {
+                            do {
+                                ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(KfcContract.KFCListEntry.PRODUCT_NAME)));
+                            } while (cursor.moveToNext());
+                        }
+
+                        cursor.close();
+
+                        getArrayList(ArrayItemNames);
+
+                }
+                else if (position == 7) {
                     ArrayItemNames.clear();
+                    gridview.setAdapter(new KfcSandwichAdapter(parent.getContext()));
 
-                    Cursor cursor = selectCategoryItems("Salades");
+                    Cursor cursor = KfcselectCategoryItems("Sandwiches");
                     cursor.moveToFirst();
 
                     if (cursor.moveToFirst()) {
                         do {
-                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
+                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(KfcContract.KFCListEntry.PRODUCT_NAME)));
                         } while (cursor.moveToNext());
                     }
 
@@ -239,111 +574,21 @@ public class MenuActivity extends AppCompatActivity {
 
                 }
 
-                else if (position == 1) {
-                    ArrayItemNames.clear();
-                    gridview.setAdapter(new SandwichAdapter(parent.getContext()));
-
-                    Cursor cursor = selectCategoryItems("Sandwichs");
-                    cursor.moveToFirst();
-
-                    if (cursor.moveToFirst()) {
-                        do {
-                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
-                        } while (cursor.moveToNext());
-                    }
-
-                    cursor.close();
-
-                    getArrayList(ArrayItemNames);
 
                 }
 
-                else if (position == 2){
-                    ArrayItemNames.clear();
-                    gridview.setAdapter(new PetitdejAdapter(parent.getContext()));
-
-                    Cursor cursor = selectCategoryItems("Petit déjeuner");
-                    cursor.moveToFirst();
-
-                    if (cursor.moveToFirst()) {
-                        do {
-                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
-                        } while (cursor.moveToNext());
-                    }
-
-                    cursor.close();
-
-                    getArrayList(ArrayItemNames);
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
 
                 }
 
-                else if (position == 3){
-                    ArrayItemNames.clear();
-                    gridview.setAdapter(new DessertAdapter(parent.getContext()));
 
-                    Cursor cursor = selectCategoryItems("Desserts");
-                    cursor.moveToFirst();
+            });
 
-                    if (cursor.moveToFirst()) {
-                        do {
-                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
-                        } while (cursor.moveToNext());
-                    }
-
-                    cursor.close();
-
-                    getArrayList(ArrayItemNames);
-
-                }
-
-                else if (position == 4){
-                    ArrayItemNames.clear();
-                    gridview.setAdapter(new AccompagnementAdapter(parent.getContext()));
-
-                    Cursor cursor = selectCategoryItems("Accompagnements");
-                    cursor.moveToFirst();
-
-                    if (cursor.moveToFirst()) {
-                        do {
-                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
-                        } while (cursor.moveToNext());
-                    }
-
-                    cursor.close();
-
-                    getArrayList(ArrayItemNames);
-
-                }
-
-                else if (position == 5){
-                    ArrayItemNames.clear();
-                    gridview.setAdapter(new BoissonAdapter(parent.getContext()));
-
-                    Cursor cursor = selectCategoryItems("Boissons");
-                    cursor.moveToFirst();
-
-                    if (cursor.moveToFirst()) {
-                        do {
-                            ArrayItemNames.add(cursor.getString(cursor.getColumnIndex(McDoContract.Entrees.PRODUCT_NAME)));
-                        } while (cursor.moveToNext());
-                    }
-
-                    cursor.close();
-
-                    getArrayList(ArrayItemNames);
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+        }
 
 
-        });
-
-        //MenuActivity.this.dropdown.getOnItemSelectedListener();
+            //MenuActivity.this.dropdown.getOnItemSelectedListener();
 
         gridview.setAdapter(new ImageAdapter(this));
 
@@ -354,8 +599,8 @@ public class MenuActivity extends AppCompatActivity {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     final int position, long id) {
-                Toast.makeText(MenuActivity.this, mealTime + " " + restoChoice,
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MenuActivity.this, mealTime + " " + restoChoice,
+                //        Toast.LENGTH_SHORT).show();
                 //tvPanier.append("\n" + "1x" + fakedata[position]);
 
                 final Dialog dialog = new Dialog(context);
@@ -373,11 +618,19 @@ public class MenuActivity extends AppCompatActivity {
 
                 ImageView image = (ImageView) dialog.findViewById(R.id.DialogImage);
 
-                Cursor cursorImage = selectImageItems(ArrayItemNames.get(position));
+                if(restoChoice.equals("McDo")) {
+                    cursorImage = selectImageItems(ArrayItemNames.get(position));
+                    cursorImage.moveToFirst();
 
-                cursorImage.moveToFirst();
+                    imageName = cursorImage.getString(cursorImage.getColumnIndex(McDoContract.Entrees.IMAGE_NAME));
+                }
+                if(restoChoice.equals("KFC")) {
+                    cursorImage = KfcselectImageItems(ArrayItemNames.get(position));
+                    cursorImage.moveToFirst();
 
-                String imageName = cursorImage.getString(cursorImage.getColumnIndex(McDoContract.Entrees.IMAGE_NAME));
+                    imageName = cursorImage.getString(cursorImage.getColumnIndex(KfcContract.KFCListEntry.IMAGE_NAME));
+                }
+
 
                 int drawableResourceId = getResources().getIdentifier(imageName, "drawable", getPackageName());
 
@@ -443,7 +696,12 @@ public class MenuActivity extends AppCompatActivity {
 
                 startPanierActivityIntent.putExtras(extras);
 
-                startActivity(startPanierActivityIntent);
+                if(!ArrayPanier.isEmpty()){
+                    startActivity(startPanierActivityIntent);
+                }
+                else {
+                    Toast.makeText(MenuActivity.this, "Veuillez d'abord remplir le panier ! ", Toast.LENGTH_LONG).show();
+                }
 
 
             }
@@ -465,6 +723,19 @@ public class MenuActivity extends AppCompatActivity {
                 null,
                 null,
                 McDoContract.Entrees.COLUMN_TIMESTAMP
+        );
+    }
+
+    private Cursor getKfcItem() {
+        // COMPLETED (6) Inside, call query on mDb passing in the table name and projection String [] order by COLUMN_TIMESTAMP
+        return mDb.query(
+                KfcContract.KFCListEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                KfcContract.KFCListEntry.COLUMN_TIMESTAMP
         );
     }
 
@@ -505,42 +776,47 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Menu Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
+
+    private Cursor KfcselectCategoryItems(String categorie) {
+        String[] FROM = {
+                KfcContract.KFCListEntry.CATEGORIE,
+                KfcContract.KFCListEntry.PRODUCT_NAME
+        };
+
+        String where = KfcContract.KFCListEntry.CATEGORIE + "=?";
+
+        String[] whereArgs = new String[] { // The value of the column specified above for the rows to be included in the response
+                categorie
+        };
+
+        return mDb.query(KfcContract.KFCListEntry.TABLE_NAME, FROM, where, whereArgs, null, null, KfcContract.KFCListEntry.COLUMN_TIMESTAMP);
+
+
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    private Cursor KfcselectImageItems(String nomItem) {
+        String[] FROM = {
+                KfcContract.KFCListEntry.IMAGE_NAME,
+                KfcContract.KFCListEntry.PRODUCT_NAME
+        };
+
+        String where = KfcContract.KFCListEntry.PRODUCT_NAME + "=?";
+
+        String[] whereArgs = new String[] { // The value of the column specified above for the rows to be included in the response
+                nomItem
+        };
+
+        return mDb.query(KfcContract.KFCListEntry.TABLE_NAME, FROM, where, whereArgs, null, null, KfcContract.KFCListEntry.COLUMN_TIMESTAMP);
+
+
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
+    private void getArrayList(ArrayList result){
+        // Now the data has been "returned" (as pointed out, that's not
+        // the right terminology)
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -569,37 +845,5 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
-    /*private void initiatePopupWindow(View v) {
-        try {
-            //We need to get the instance of the LayoutInflater, use the context of this activity
-            LayoutInflater inflater = (LayoutInflater) MenuActivity.this
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            //Inflate the view from a predefined XML layout
-            View layout = inflater.inflate(R.layout.activity_menu,
-                    (RelativeLayout) findViewById(R.id.menu_layout));
-            // create a 300px width and 470px height PopupWindow
-            pw = new PopupWindow(layout, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT, true);
-            // display the popup in the center
-            pw.showAtLocation(v, Gravity.CENTER, 0, 0);
-
-            TextView mResultText = (TextView) layout.findViewById(R.id.server_status_text);
-            Button cancelButton = (Button) layout.findViewById(R.id.end_data_send_button);
-            cancelButton.setOnClickListener(cancel_button_click_listener);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-*/
-    //private View.OnClickListener cancel_button_click_listener = new View.OnClickListener() {
-    //    public void onClick(View v) {
-    //        pw.dismiss();
-    //    }
-    //};
-
-    private void getArrayList(ArrayList result){
-        // Now the data has been "returned" (as pointed out, that's not
-        // the right terminology)
-    }
 
 }

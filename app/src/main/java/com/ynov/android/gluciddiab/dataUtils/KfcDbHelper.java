@@ -26,6 +26,7 @@ public class KfcDbHelper extends SQLiteOpenHelper {
                 KfcContract.KFCListEntry.PRODUCT_NAME + " TEXT NOT NULL, " +
                 KfcContract.KFCListEntry.GLU_RAPIDE + " REAL NOT NULL, " +
                 KfcContract.KFCListEntry.GLU_LENT + " REAL NOT NULL, " +
+                KfcContract.KFCListEntry.IMAGE_NAME + " TEXT NOT NULL, " +
                 KfcContract.KFCListEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP " +
                 ");";
 

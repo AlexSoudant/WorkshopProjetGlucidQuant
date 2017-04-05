@@ -13,6 +13,7 @@ public class KfcContract {
         public static final String PRODUCT_NAME = "menuname";
         public static final String GLU_LENT = "glucoselent";
         public static final String GLU_RAPIDE = "glucoserapide";
+        public static final String IMAGE_NAME = "image";
         public static final String COLUMN_TIMESTAMP = "timestamp";
     }
 }
