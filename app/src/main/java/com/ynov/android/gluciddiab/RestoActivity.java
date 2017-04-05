@@ -89,7 +89,6 @@ public class RestoActivity extends AppCompatActivity{
 
             public void onClick(View view)
             {
-
                 if (!MealTime.equals("")) {
                     RestoChoice = "KFC";
                     Bundle extras = new Bundle();
@@ -98,7 +97,8 @@ public class RestoActivity extends AppCompatActivity{
                     startmenuActivityIntent.putExtras(extras);
 
                     startActivity(startmenuActivityIntent);
-                }else{Toast.makeText(RestoActivity.this, "Choisis d'abord ton repas", Toast.LENGTH_SHORT).show();}
+            }else{Toast.makeText(RestoActivity.this, "Choisis d'abord ton repas", Toast.LENGTH_SHORT).show();}
+
 
             }
         });
@@ -187,8 +187,7 @@ public class RestoActivity extends AppCompatActivity{
         switch (item.getItemId()){
             case R.id.item_settings:
                 //Toast.makeText(RestoActivity.this, "Protocole" , Toast.LENGTH_SHORT).show();
-
-                if(!MealTime.equals("")) {
+                
                     Context context = RestoActivity.this;
 
                     Class destinationActivity = ProtocoleActivity.class;
@@ -196,7 +195,6 @@ public class RestoActivity extends AppCompatActivity{
                     Intent startProtocoleActivityIntent = new Intent(context, destinationActivity);
 
                     startActivity(startProtocoleActivityIntent);
-                }else{Toast.makeText(RestoActivity.this, "Veuillez choisir un repas" , Toast.LENGTH_SHORT).show();}
 
                 return true;
         }
