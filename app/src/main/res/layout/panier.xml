@@ -9,30 +9,31 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="400dp" />
+        android:layout_height="400dp"
+        android:layout_below="@id/app_bar" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/listView"
-        android:background="#CDCDCD"
+        android:background="#F0F0F0"
         android:layout_marginBottom="0sp">
         <TextView
             android:id="@+id/textTGL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="#36007F"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorPrimary"
             android:layout_marginTop="10dp"
-            android:text="Total de glucide lente:0g" />
+            android:text="Total de glucide lente : 0g" />
         <TextView
             android:id="@+id/textMaxTGL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
-            android:textColor="#36007F"
+            android:textColor="#A0A0A0"
             android:text="max 15g" />
         <ProgressBar
             android:id="@+id/pGL"
@@ -46,8 +47,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="#36007F"
-            android:text="Total de glucide rapide:0g" />
+            android:textColor="@color/colorPrimary"
+            android:text="Total de glucide rapide : 0g"
+            android:layout_marginLeft="10dp"/>
         <TextView
             android:id="@+id/textMaxTGR"
             android:layout_below="@+id/pGL"
@@ -55,8 +57,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_gravity="center"
-            android:textColor="#36007F"
-            android:text="max 10g" />
+            android:textColor="#A0A0A0"
+            android:text="max 10g"
+            android:layout_marginRight="10dp"/>
         <ProgressBar
             android:id="@+id/pGR"
             style="?android:attr/progressBarStyleHorizontal"
@@ -66,35 +69,40 @@
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/radio"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_below="@+id/pGR"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="0sp">
+            android:layout_marginBottom="0sp"
+            android:layout_centerHorizontal="true">
             <RadioButton android:id="@+id/radio_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="*1"
-                android:textColor="#36007F"
-                android:onClick="onRadioButtonClicked"/>
+                android:text="x 1"
+                android:textColor="#D8315B"
+                android:onClick="onRadioButtonClicked"
+                android:buttonTint="#D8315B"/>
             <RadioButton android:id="@+id/radio_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="*1.5"
-                android:textColor="#36007F"
-                android:onClick="onRadioButtonClicked"/>
+                android:text="x 1.5"
+                android:textColor="#D8315B"
+                android:onClick="onRadioButtonClicked"
+                android:buttonTint="#D8315B"/>
             <RadioButton android:id="@+id/radio_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="*2"
-                android:textColor="#36007F"
-                android:onClick="onRadioButtonClicked"/>
+                android:text="x 2"
+                android:textColor="#D8315B"
+                android:onClick="onRadioButtonClicked"
+                android:buttonTint="#D8315B"/>
             <RadioButton android:id="@+id/radio_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="*3"
-                android:textColor="#36007F"
-                android:onClick="onRadioButtonClicked"/>
+                android:text="x 3"
+                android:textColor="#D8315B"
+                android:onClick="onRadioButtonClicked"
+                android:buttonTint="#D8315B"/>
         </RadioGroup>
     </RelativeLayout>
 </RelativeLayout>

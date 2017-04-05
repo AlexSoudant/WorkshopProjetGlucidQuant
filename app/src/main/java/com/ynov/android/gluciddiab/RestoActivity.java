@@ -187,7 +187,7 @@ public class RestoActivity extends AppCompatActivity{
         switch (item.getItemId()){
             case R.id.item_settings:
                 //Toast.makeText(RestoActivity.this, "Protocole" , Toast.LENGTH_SHORT).show();
-                
+
                     Context context = RestoActivity.this;
 
                     Class destinationActivity = ProtocoleActivity.class;

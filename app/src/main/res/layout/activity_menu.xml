@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/menu_layout">
+    android:id="@+id/menu_layout"
+    android:background="@color/colorPrimary">
 
 
     <include layout="@layout/app_bar"
@@ -10,33 +11,36 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown"
-        android:layout_marginTop="30dp" />
+        android:layout_below="@id/app_bar"
+        android:backgroundTint="#FFF"
+        android:popupBackground="#FFF"/>
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/gridviewItems"
         android:layout_below="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:columnWidth="90dp"
+        android:columnWidth="180dp"
         android:numColumns="auto_fit"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
-        android:stretchMode="columnWidth"
         android:gravity="center"
+        android:background="#FFF"
         />
 
     <TextView
         android:id="@+id/textPanier"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="30dp"
         android:layout_below="@+id/gridviewItems"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="25dp"
-        android:text="Votre Panier est ici:"/>
+        android:layout_marginTop="10dp"
+        android:textSize="22dp"
+        android:textColor="#FFF"
+        android:text="Votre Panier est ici"/>
 
     <ListView
         android:id="@+id/listViewPanier"
@@ -47,26 +51,17 @@
         android:layout_centerVertical="true"
         android:layout_above="@+id/buttonValidPanier"
         android:layout_below="@+id/textPanier"
-        android:layout_width="wrap_content" />
+        android:layout_width="wrap_content"
+        android:background="#FFF"/>
 
     <Button
         android:id="@+id/buttonValidPanier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="7dp"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_alignParentBottom="true"
-        android:text="Valider votre Menu!" />
-
-
-<!--    <Button
-        android:id="@+id/buttonPopUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PopUp test" />-->
-
-
-
+        android:textColor="#FFF"
+        android:text="Valider votre Menu !"
+        android:backgroundTint="@color/colorAccent"/>
 </RelativeLayout>
