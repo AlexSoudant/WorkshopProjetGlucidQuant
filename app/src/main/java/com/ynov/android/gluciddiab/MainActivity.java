@@ -35,10 +35,14 @@ public class MainActivity extends AppCompatActivity {
 
         McDoData.insertData(mDb);
 
+        mDb.close();
+
         KfcDbHelper dbHelperkfc = new KfcDbHelper(this);
         mDb = dbHelperkfc.getWritableDatabase();
 
         KfcData.insertFastFoodData(mDb);
+
+        mDb.close();
 
         //McDoDbHelper dbHelper2 = new McDoDbHelper(this);
 
@@ -87,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }

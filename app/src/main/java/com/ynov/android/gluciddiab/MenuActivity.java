@@ -623,12 +623,16 @@ public class MenuActivity extends AppCompatActivity {
                     cursorImage.moveToFirst();
 
                     imageName = cursorImage.getString(cursorImage.getColumnIndex(McDoContract.Entrees.IMAGE_NAME));
+
+
                 }
-                if(restoChoice.equals("KFC")) {
+                else{ //if(restoChoice.equals("KFC"))
                     cursorImage = KfcselectImageItems(ArrayItemNames.get(position));
                     cursorImage.moveToFirst();
 
                     imageName = cursorImage.getString(cursorImage.getColumnIndex(KfcContract.KFCListEntry.IMAGE_NAME));
+
+
                 }
 
 
@@ -710,6 +714,8 @@ public class MenuActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+
     }
 
 
