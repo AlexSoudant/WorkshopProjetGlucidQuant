@@ -176,7 +176,7 @@ public class KfcData {
         cv.put(KfcContract.KFCListEntry.PRODUCT_NAME, "Tower Zinger");
         cv.put(KfcContract.KFCListEntry.GLU_LENT, 21);
         cv.put(KfcContract.KFCListEntry.GLU_RAPIDE, 10);
-        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfctower");
+        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfctowerzinger");
         list.add(cv);
 
         cv = new ContentValues();
@@ -184,7 +184,7 @@ public class KfcData {
         cv.put(KfcContract.KFCListEntry.PRODUCT_NAME, "Boxmaster OR");
         cv.put(KfcContract.KFCListEntry.GLU_LENT, 58);
         cv.put(KfcContract.KFCListEntry.GLU_RAPIDE, 1);
-        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcboxmaster");
+        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcboxmasteroriginal");
         list.add(cv);
 
         cv = new ContentValues();
@@ -208,7 +208,7 @@ public class KfcData {
         cv.put(KfcContract.KFCListEntry.PRODUCT_NAME, "Boxmaster Maxx OR");
         cv.put(KfcContract.KFCListEntry.GLU_LENT, 67);
         cv.put(KfcContract.KFCListEntry.GLU_RAPIDE, 2);
-        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcboxmaster");
+        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcboxmastermaxxor");
         list.add(cv);
 
         cv = new ContentValues();
@@ -216,7 +216,7 @@ public class KfcData {
         cv.put(KfcContract.KFCListEntry.PRODUCT_NAME, "Boxmaster Freestyle");
         cv.put(KfcContract.KFCListEntry.GLU_LENT, 60);
         cv.put(KfcContract.KFCListEntry.GLU_RAPIDE, 3);
-        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcboxmaster");
+        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcboxmasterfreestyle");
         list.add(cv);
 
         cv = new ContentValues();
@@ -240,7 +240,7 @@ public class KfcData {
         cv.put(KfcContract.KFCListEntry.PRODUCT_NAME, "Chizza");
         cv.put(KfcContract.KFCListEntry.GLU_LENT, 27);
         cv.put(KfcContract.KFCListEntry.GLU_RAPIDE, 3);
-        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "nopicture");
+        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcchizza");
         list.add(cv);
 
         cv = new ContentValues();
@@ -248,7 +248,7 @@ public class KfcData {
         cv.put(KfcContract.KFCListEntry.PRODUCT_NAME, "Double Stacker Cheese & Bacon");
         cv.put(KfcContract.KFCListEntry.GLU_LENT, 45);
         cv.put(KfcContract.KFCListEntry.GLU_RAPIDE, 7);
-        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcdoublestacker");
+        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcdoublestackerbacon");
         list.add(cv);
 
         cv = new ContentValues();
@@ -395,7 +395,7 @@ public class KfcData {
         cv.put(KfcContract.KFCListEntry.PRODUCT_NAME, "Frites normales salées");
         cv.put(KfcContract.KFCListEntry.GLU_LENT, 34);
         cv.put(KfcContract.KFCListEntry.GLU_RAPIDE, 1);
-        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcfrites");
+        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcmoyennefrite");
         list.add(cv);
 
         cv = new ContentValues();
@@ -403,7 +403,7 @@ public class KfcData {
         cv.put(KfcContract.KFCListEntry.PRODUCT_NAME, "Frites Grandes salées");
         cv.put(KfcContract.KFCListEntry.GLU_LENT, 49);
         cv.put(KfcContract.KFCListEntry.GLU_RAPIDE, 1);
-        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcfrites");
+        cv.put(KfcContract.KFCListEntry.IMAGE_NAME, "kfcgrandefrite");
         list.add(cv);
 
         cv = new ContentValues();

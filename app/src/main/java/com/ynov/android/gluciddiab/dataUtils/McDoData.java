@@ -360,7 +360,7 @@ public class McDoData {
         cv.put(McDoContract.Entrees.PRODUCT_NAME, "Coca-Cola (25cl)");
         cv.put(McDoContract.Entrees.GLU_RAPIDE, 11);
         cv.put(McDoContract.Entrees.GLU_LENT, 0);
-        cv.put(McDoContract.Entrees.IMAGE_NAME, "mcdococacolavinigtcingcl");
+        cv.put(McDoContract.Entrees.IMAGE_NAME, "mcdococacolavinigtcinqcl");
         list.add(cv);
 
         cv = new ContentValues();
