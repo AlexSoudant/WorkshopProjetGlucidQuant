@@ -9,15 +9,16 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/app_bar" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/listView"
+        android:layout_height="wrap_content"
         android:background="#F0F0F0"
-        android:layout_marginBottom="0sp">
+        android:layout_marginBottom="0dp"
+        android:layout_alignParentBottom="true"
+        >
         <TextView
             android:id="@+id/textTGL"
             android:layout_width="wrap_content"
@@ -25,7 +26,7 @@
             android:layout_marginLeft="10dp"
             android:textColor="@color/colorPrimary"
             android:layout_marginTop="10dp"
-            android:text="Total de glucide lente : 0g" />
+            android:text="Total de glucides lents : 0g" />
         <TextView
             android:id="@+id/textMaxTGL"
             android:layout_width="wrap_content"
@@ -48,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/colorPrimary"
-            android:text="Total de glucide rapide : 0g"
+            android:text="Total de glucides rapides : 0g"
             android:layout_marginLeft="10dp"/>
         <TextView
             android:id="@+id/textMaxTGR"
@@ -73,7 +74,6 @@
             android:layout_below="@+id/pGR"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="0sp"
             android:layout_centerHorizontal="true">
             <RadioButton android:id="@+id/radio_1"
                 android:layout_width="wrap_content"

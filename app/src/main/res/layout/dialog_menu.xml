@@ -22,8 +22,8 @@
         android:id="@+id/DialogGluLent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="15dp"
         android:layout_toRightOf="@+id/DialogImage"/>
 
 
@@ -31,8 +31,8 @@
         android:id="@+id/DialogGluRapide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
         android:layout_toRightOf="@+id/DialogImage"
         android:layout_below="@+id/DialogGluLent"/>
 
